@@ -5,11 +5,100 @@
     <title>Page Title</title>
   </head>
   <body>
-    <h1 id="aaa">This is a Heading</h1>
-    <p>This is a paragraph.</p>
+    <div id="wrapper">
+      <div id="navbar"></div>
+      <div id="personalia">
+        <img id="pimg" src="gus.png" />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+      <div id="projects">
+        <div class="projectElement">
+          <a href="./projects/middlekingdom.html"><img src="gus.png" /></a>
+          <p>Description aHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p>
+        </div>
+        <div class="projectElement">
+          <a href=""><img src="gus.png" /></a>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <div class="projectElement">
+          <a href=""><img src="gus.png" /></a>
+          <p>
+            Description
+            aHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+          </p>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>Rune Seeland</h3>
+        <h3>-</h3>
+        <h3>@runesee</h3>
+        <h3>-</h3>
+        <a href="https://github.com/runesee"><h3>Github</h3> </a>
+      </div>
+    </div>
+    <img id="popduck" src="duck_full.png" />
     <script>
-      var test = document.getElementById("aaa");
-      test.innerHTML = "MUHAHAHAHAHAAH";
+      var popduck = document.getElementById("popduck");
+      popduck.addEventListener("click", pop);
+
+      function pop() {
+        var windowWidth = window.innerWidth;
+        var windowHeight = window.innerHeight;
+
+        // Generate random coordinates for positioning the duck
+        var randomX = Math.floor(
+          Math.random() * (windowWidth - popduck.offsetWidth)
+        );
+        var randomY = Math.floor(
+          Math.random() * (windowHeight - popduck.offsetHeight)
+        );
+
+        // Apply the random coordinates to move the duck
+        popduck.style.left = randomX + "px";
+        popduck.style.top = randomY + "px";
+
+        var duckModel = "";
+        var randomDesign = Math.floor(Math.random() * 11);
+        console.log(randomDesign);
+        if (randomDesign === 10) {
+          duckModel = "duck_brows";
+        } else if (randomDesign === 9) {
+          duckModel = "duck_full";
+        } else if (randomDesign === 8) {
+          duckModel = "duck_googly";
+        } else if (randomDesign === 7) {
+          duckModel = "duck_hair";
+        } else if (randomDesign === 6) {
+          duckModel = "duck_hat";
+        } else if (randomDesign === 5) {
+          duckModel = "duck_longface";
+        } else if (randomDesign === 4) {
+          duckModel = "duck_mohawk";
+        } else if (randomDesign === 3) {
+          duckModel = "duck_devil";
+        } else if (randomDesign === 2) {
+          duckModel = "duck_headphones";
+        } else {
+          duckModel = "duck_antenna";
+        }
+        popduck.src = duckModel + ".png";
+      }
     </script>
   </body>
 </html>
