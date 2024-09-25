@@ -4,9 +4,100 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="navbar"></div>
-    <div id="footer">
-      <h3 style="color: red">@runesee</h3>
+    <div id="wrapper">
+      <div id="navbar">
+        <button class="portfolioButton">Portfolio</button>
+        <button disabled="true" class="portfolioButton">/</button>
+        <button disabled="true" class="portfolioButton">Middle Kingdom</button>
+      </div>
+      <div class="projectWrapper">
+        <img id="bannerImage" src="../images/na.png" />
+        <div id="projectDescription">
+          <h1>Middle Kingdom mod - Hearts of Iron IV</h1>
+          <p>
+            Middle Kingdom is a mod I am developing for the video game Hearts of
+            Iron IV. In an attempt to push the limitations of the game engine,
+            and because I personally take interest in ancient history, this mod
+            takes place from 2010 - 1995 BC. The main focus of the mod is the
+            middle kingdom of Egypt and its neighbours - some of the first
+            civilizations in the world. Players can choose to contest the
+            balance of power in Mesopotamia, or attempt to profit off trade
+            along the North African trade routes. The Middle Kingdom mod aims to
+            be lightweight by only having a few playable civilizations. What it
+            lacks in terms of options is hopefully made up for with the
+            inclusion of alernative paths for each civilization to take. To
+            prevent the campaign from going on for too long, some historical
+            timelines will be shifted to better fit within the window of the
+            campaign. Further, some events from years before or after this mod's
+            scope may be introduced within the campaign to keep things
+            interesting. A lot of research has gone into this mod, however some
+            liberties will be taken both because of historical uncertainties and
+            to keep the mod entertaining.
+          </p>
+          <div class="projectBody">
+            <img src="../images/egy.png" />
+            <div id="projectFirstInfo" class="projectWrapper">
+              <p class="projectParagraphLeft">
+                The Middle Kingdom of Egypt, as it stands around 2010 BC, has
+                recently been reunified by Mentuhotep II. Threats from both east
+                and south still remain.
+              </p>
+              <p class="projectParagraphLeft">
+                Egypt is nothing without control of the Nile. Will you seek to
+                expand your control southward, marching your armies upstreams to
+                Kerma's borders? Or will you stand in solidarity, and fight off
+                foreign invaders together?
+              </p>
+              <p class="projectParagraphLeft">
+                While the wast Sahara offers protection from the west, the Nile
+                delta remains difficult to defend. There are rumors from the
+                east of a great empire. Without a regular standing army, only
+                you can decide the fate of Egypt.
+              </p>
+            </div>
+          </div>
+          <div class="projectBody">
+            <div id="projectSecondInfo" class="projectWrapper">
+              <p class="projectParagraphRight">
+                A storm is brewing in Mesopotamia. Elam has long quarreled for
+                control on the southern banks of the Tigris and Eufrates.
+              </p>
+              <p class="projectParagraphRight">
+                While the vast Sumerian empire stretches from the Mediterranean
+                basin to the Persian gulf, Elam has been pushed out of Susa.
+                This great Elamite city laying under foreign control is a dagger
+                in the side of Kindattu.
+              </p>
+              <p class="projectParagraphRight">
+                While they may have occupied the city, Sumer too was weakened by
+                the strife. For the future of Elam Kindattu must return this
+                dagger to its Mesopotamian owners. This Goliat must be felled!
+              </p>
+            </div>
+            <img id="projectSecondImage" src="../images/ela.png" />
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>@runesee</h3>
+      </div>
     </div>
+    <script>
+      //TODO: Add experience gained from project and repo link button
+      //TODO: Add language selector https://stackoverflow.com/questions/32008125/using-javascript-to-change-website-language
+      //TODO: update main page
+      //TODO: upload other projects and create new pages
+      let bttn = document.getElementsByClassName("portfolioButton")[0];
+      bttn.addEventListener("click", navigate);
+
+      function navigate() {
+        let currHref = window.location.href;
+        currHref = currHref.replace(
+          "projects/middlekingdom.html",
+          "index.html"
+        );
+        window.location.href = currHref;
+      }
+    </script>
   </body>
 </html>

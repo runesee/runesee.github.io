@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="projects/styles.css" />
     <title>Page Title</title>
   </head>
   <body>
     <div id="wrapper">
-      <div id="navbar"></div>
+      <div id="navbar">
+        <button disabled="true" class="portfolioButton">Portfolio</button>
+      </div>
       <div id="personalia">
-        <img id="pimg" src="gus.png" />
+        <img id="pimg" src="images/gus.png" />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -21,11 +23,13 @@
       </div>
       <div id="projects">
         <div class="projectElement">
-          <a href="./projects/middlekingdom.html"><img src="gus.png" /></a>
+          <a href="./projects/middlekingdom.html"
+            ><img src="images/gus.png"
+          /></a>
           <p>Description aHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p>
         </div>
         <div class="projectElement">
-          <a href=""><img src="gus.png" /></a>
+          <a href=""><img src="images/gus.png" /></a>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -37,7 +41,7 @@
           </p>
         </div>
         <div class="projectElement">
-          <a href=""><img src="gus.png" /></a>
+          <a href=""><img src="images/gus.png" /></a>
           <p>
             Description
             aHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
@@ -52,7 +56,7 @@
         <a href="https://github.com/runesee"><h3>Github</h3> </a>
       </div>
     </div>
-    <img id="popduck" src="duck_full.png" />
+    <img id="popduck" src="images\duck_full.png" />
     <script>
       var popduck = document.getElementById("popduck");
       popduck.addEventListener("click", pop);
@@ -97,7 +101,7 @@
         } else {
           duckModel = "duck_antenna";
         }
-        popduck.src = duckModel + ".png";
+        popduck.src = "images\\" + duckModel + ".png";
       }
     </script>
   </body>
