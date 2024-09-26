@@ -45,11 +45,7 @@ html {
   justify-content: center;
   position: fixed;
   top: 0;
-  background-color: #f7fff7;
   border-bottom: solid 2px #343434;
-}
-
-#navbar > a {
 }
 
 #personalia {
@@ -76,7 +72,6 @@ html {
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-
   padding: 15px;
 }
 
@@ -85,10 +80,19 @@ html {
   flex-direction: row;
   padding: 20px;
   align-items: center;
+  margin-top: 20px;
 }
 
 .projectElement > a > img {
-  max-width: 200px;
+  max-height: 200px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.projectElement > a > img:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+  cursor: pointer;
 }
 
 .projectElement > p {
@@ -100,7 +104,7 @@ html {
 
 #popduck {
   position: absolute;
-  left: 225px;
+  left: 10px;
   bottom: 10px;
   scale: 2;
 }
@@ -128,20 +132,28 @@ html {
 
 #projectDescription {
   padding: 1% 15% 0 15%;
+  text-align: center;
 }
 
 #projectDescription > p {
+  text-align: initial;
   font-size: large;
   padding-left: 50px;
   padding-right: 50px;
 }
 
+#projectDescription > iframe {
+  text-align: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
 .portfolioButton {
-  background-color: #f7fff7;
   border: 0;
   padding: 10px;
   font-size: large;
-  color: #343434;
 }
 
 .portfolioButton:hover {
@@ -153,12 +165,11 @@ html {
 }
 
 .portfolioButton:enabled {
-  color: gray;
+  opacity: 0.4;
   transition: 0.3s;
 }
 
 .portfolioButton:enabled:hover {
-  color: #343434;
   opacity: 0.9;
 }
 
@@ -184,6 +195,63 @@ html {
 
 .projectParagraphLeft {
   padding-left: 5%;
+}
+#middleKingdomWrapper {
+  background-color: #c9af75;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  margin-left: 50px;
+}
+
+#placeholderWrapper {
+  background-color: #72a1e5;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+#placeholderWrapper2 {
+  background-color: #7f9172;
+  margin-left: 50px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.themeBrown {
+  background-color: #c9af75;
+}
+
+.themeBrown > button {
+  background-color: #c9af75;
+  color: black;
+}
+
+.themeBrown > button:enabled {
+  color: #343434;
+}
+
+.themeBrown > button:enabled:hover {
+  color: black;
+}
+
+.themeWhite {
+  background-color: #f7fff7;
+}
+
+.themeWhite > button {
+  background-color: #f7fff7;
+  color: #343434;
+}
+
+#github {
+  max-height: 50px;
+}
+
+#githubWrapper {
+  text-align: center;
+  justify-content: center;
+}
+
+#video {
+  text-align: center;
 }
 
 @media screen and (max-width: 1530px) {

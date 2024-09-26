@@ -2,11 +2,12 @@
 <html>
   <head>
     <link rel="stylesheet" href="projects/styles.css" />
-    <title>Page Title</title>
+    <link rel="icon" type="image/x-icon" href="images/duck_full.png" />
+    <title>Portfolio - runesee</title>
   </head>
   <body>
     <div id="wrapper">
-      <div id="navbar">
+      <div id="navbar" class="themeWhite">
         <button disabled="true" class="portfolioButton">Portfolio</button>
       </div>
       <div id="personalia">
@@ -22,14 +23,27 @@
         </p>
       </div>
       <div id="projects">
-        <div class="projectElement">
+        <div id="middleKingdomWrapper" class="projectElement">
           <a href="./projects/middlekingdom.html"
+            ><img src="images/egy.png"
+          /></a>
+          <p>
+            Middle Kingdom is a mod I am developing for the video game Hearts of
+            Iron IV. HoI4 is a grand strategy game, taking place in the 20th
+            century. In an attempt to push the limitations of the game engine,
+            and because I personally take interest in ancient history, this mod
+            instead takes place from 2010 - 1995 BC. The main focus of the mod
+            is the middle kingdom of Egypt and its neighbours - some of the
+            first civilizations in the world. Players can choose to contest the
+            balance of power in Mesopotamia, or attempt to profit off trade
+            along the North African trade routes. The Middle Kingdom mod aims
+            to... <a href="projects/middlekingdom.html">read more</a>
+          </p>
+        </div>
+        <div id="placeholderWrapper" class="projectElement">
+          <a href="./projects/peasantrebellion.html"
             ><img src="images/gus.png"
           /></a>
-          <p>Description aHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p>
-        </div>
-        <div class="projectElement">
-          <a href=""><img src="images/gus.png" /></a>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -40,7 +54,7 @@
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </div>
-        <div class="projectElement">
+        <div id="placeholderWrapper2" class="projectElement">
           <a href=""><img src="images/gus.png" /></a>
           <p>
             Description
@@ -73,10 +87,6 @@
           Math.random() * (windowHeight - popduck.offsetHeight)
         );
 
-        // Apply the random coordinates to move the duck
-        popduck.style.left = randomX + "px";
-        popduck.style.top = randomY + "px";
-
         var duckModel = "";
         var randomDesign = Math.floor(Math.random() * 11);
         console.log(randomDesign);
@@ -102,6 +112,10 @@
           duckModel = "duck_antenna";
         }
         popduck.src = "images\\" + duckModel + ".png";
+
+        // Apply the random coordinates to move the duck
+        popduck.style.left = randomX + "px";
+        popduck.style.top = randomY + "px";
       }
     </script>
   </body>
