@@ -5,10 +5,12 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="navbar" class="themeBrown">
+      <div id="navbar" class="themeGreen">
         <button class="portfolioButton">Portfolio</button>
         <button disabled="true" class="portfolioButton">/</button>
-        <button disabled="true" class="portfolioButton">Middle Kingdom</button>
+        <button disabled="true" class="portfolioButton">
+          Peasant Rebellion
+        </button>
       </div>
       <div class="projectWrapper">
         <div id="projectDescription">
@@ -32,16 +34,16 @@
             During the project, I was mainly responsible for the UX and UI
             design. This project was a lot of fun, and we ended up with a game
             that was pretty fun to play (at least in my opinion). A quick
-            summary of the game can be viewed in the video below.
+            summary of the game can be viewed on Youtube in the video below.
           </p>
-          <iframe
-            id="video"
-            width="720"
-            height="500"
-            src="https://www.youtube.com/watch?v=UHAvuxEaq4o"
-          ></iframe>
+          <div id="videoWrapper">
+            <a href="https://www.youtube.com/watch?v=UHAvuxEaq4o"
+              ><img id="videoStillframe" src="../images/video_stillframe.png"
+            /></a>
+          </div>
+
           <div class="projectBody">
-            <img src="../images/egy.png" />
+            <img src="../images/side_menu.png" />
             <div id="projectFirstInfo" class="projectWrapper">
               <p class="projectParagraphLeft">
                 The Middle Kingdom of Egypt, as it stands around 2010 BC, has
@@ -80,7 +82,7 @@
                 dagger to its Sumerian owners. This Goliat must be felled!
               </p>
             </div>
-            <img id="projectSecondImage" src="../images/ela.png" />
+            <img id="projectSecondImage" src="../images/shop_menu.png" />
           </div>
           <p>
             Developing this mod has been a great learning experience for me. I
@@ -118,7 +120,7 @@
       function navigate() {
         let currHref = window.location.href;
         currHref = currHref.replace(
-          "projects/middlekingdom.html",
+          "projects/peasantrebellion.html",
           "index.html"
         );
         window.location.href = currHref;

@@ -44,11 +44,13 @@ html {
   flex-direction: row;
   justify-content: center;
   position: fixed;
+  z-index: 1;
   top: 0;
   border-bottom: solid 2px #343434;
 }
 
 #personalia {
+  margin-top: 50px;
   display: flex;
   flex-direction: row;
   margin-left: auto;
@@ -85,6 +87,7 @@ html {
 
 .projectElement > a > img {
   max-height: 200px;
+  max-width: 300px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -96,6 +99,17 @@ html {
 }
 
 .projectElement > p {
+  margin-left: 50px;
+  max-width: 600px;
+  flex-grow: 1;
+  word-wrap: break-word;
+}
+
+.description > h3 {
+  margin-left: 50px;
+}
+
+.description > p {
   margin-left: 50px;
   max-width: 600px;
   flex-grow: 1;
@@ -116,6 +130,7 @@ html {
 .projectWrapper {
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
 }
 
 #bannerImage {
@@ -132,22 +147,26 @@ html {
 
 #projectDescription {
   padding: 1% 15% 0 15%;
-  text-align: center;
 }
 
 #projectDescription > p {
-  text-align: initial;
   font-size: large;
   padding-left: 50px;
   padding-right: 50px;
 }
 
-#projectDescription > iframe {
+#videoStillframe {
+  max-width: 80%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#videoStillframe:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+#videoWrapper {
   text-align: center;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
 }
 
 .portfolioButton {
@@ -203,14 +222,14 @@ html {
 }
 
 #placeholderWrapper {
-  background-color: #72a1e5;
+  background-color: #7f9172;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   margin-left: 25px;
   margin-right: 25px;
 }
 
 #placeholderWrapper2 {
-  background-color: #7f9172;
+  background-color: #72a1e5;
   margin-left: 50px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
@@ -241,6 +260,15 @@ html {
   color: #343434;
 }
 
+.themeGreen {
+  background-color: #7f9172;
+}
+
+.themeGreen > button {
+  background-color: #7f9172;
+  color: #f7fff7;
+}
+
 #github {
   max-height: 50px;
 }
@@ -252,6 +280,11 @@ html {
 
 #video {
   text-align: center;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1530px) {
