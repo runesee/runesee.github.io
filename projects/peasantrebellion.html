@@ -44,55 +44,29 @@
 
           <div class="projectBody">
             <img src="../images/side_menu.png" />
-            <div id="projectFirstInfo" class="projectWrapper">
-              <p class="projectParagraphLeft">
-                The Middle Kingdom of Egypt, as it stands around 2010 BC, has
-                recently been reunified by Mentuhotep II. Threats from both east
-                and south still remain.
-              </p>
-              <p class="projectParagraphLeft">
-                Egypt is nothing without control of the Nile. Will you seek to
-                expand your control southward, marching your armies upstreams to
-                Kerma's borders? Or will you stand in solidarity, and fight off
-                foreign invaders together?
-              </p>
-              <p class="projectParagraphLeft">
-                While the vast Sahara offers protection from the west, the Nile
-                delta remains difficult to defend. There are rumors from the
-                east of a great empire. Without a regular standing army, only
-                you can decide the fate of Egypt.
-              </p>
+            <div class="projectWrapper projectFirstInfo">
+              <p class="projectParagraphLeft">TODO</p>
+              <p class="projectParagraphLeft">TODO</p>
+              <p class="projectParagraphLeft">TODO</p>
             </div>
           </div>
           <div class="projectBody">
-            <div id="projectSecondInfo" class="projectWrapper">
-              <p class="projectParagraphRight">
-                A storm is brewing in Mesopotamia. Elam has long quarreled for
-                control on the southern banks of the Tigris and Eufrates.
-              </p>
-              <p class="projectParagraphRight">
-                While the vast Sumerian empire stretches from the Mediterranean
-                basin to the Persian gulf, Elam has been pushed out of Susa.
-                This great Elamite city laying under foreign control is a dagger
-                in the side of our great leader Kindattu.
-              </p>
-              <p class="projectParagraphRight">
-                While they may have occupied the city, Sumer too was weakened by
-                the strife. For the future of Elam, Kindattu must return this
-                dagger to its Sumerian owners. This Goliat must be felled!
-              </p>
+            <div class="projectWrapper projectSecondInfo">
+              <p class="projectParagraphRight">TODO</p>
+              <p class="projectParagraphRight">TODO</p>
+              <p class="projectParagraphRight">TODO</p>
             </div>
             <img id="projectSecondImage" src="../images/shop_menu.png" />
           </div>
-          <p>
-            Developing this mod has been a great learning experience for me. I
-            have become acquainted with the scripting language Lua, as well as
-            the tools Paint.net and GIMP for editing bitmaps. After over a month
-            of developing, I feel I now have a good understanding of the source
-            code and what I need to know for the first major milestone, namely
-            populating the in-game map with all the relevant countries of the
-            ancient world.
-          </p>
+          <div class="projectBody">
+            <img src="../images/start_menu.png" />
+            <div class="projectWrapper projectFirstInfo">
+              <p class="projectParagraphLeft">TODO</p>
+              <p class="projectParagraphLeft">TODO</p>
+              <p class="projectParagraphLeft">TODO</p>
+            </div>
+          </div>
+          <p>TODO</p>
           <p>
             Further instructions for how to run and play the project can be
             found in the repository linked below.
@@ -117,6 +91,7 @@
       let bttn = document.getElementsByClassName("portfolioButton")[0];
       bttn.addEventListener("click", navigate);
 
+      /* Possibly the goofiest way to do page navigation. Because why not. */
       function navigate() {
         let currHref = window.location.href;
         currHref = currHref.replace(

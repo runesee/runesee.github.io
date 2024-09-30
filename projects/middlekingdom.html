@@ -111,13 +111,10 @@
       </div>
     </div>
     <script>
-      //TODO: Add experience gained from project and repo link button
-      //TODO: Add language selector https://stackoverflow.com/questions/32008125/using-javascript-to-change-website-language
-      //TODO: update main page
-      //TODO: upload other projects and create new pages
       let bttn = document.getElementsByClassName("portfolioButton")[0];
       bttn.addEventListener("click", navigate);
 
+      /* Possibly the goofiest way to do page navigation. Because why not. */
       function navigate() {
         let currHref = window.location.href;
         currHref = currHref.replace(
