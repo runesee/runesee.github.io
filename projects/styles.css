@@ -83,6 +83,7 @@ html {
   padding: 20px;
   align-items: center;
   margin-top: 20px;
+  max-width: 975px;
 }
 
 .projectElement > a > img {
@@ -99,19 +100,19 @@ html {
 }
 
 .projectElement > p {
-  margin-left: 50px;
-  max-width: 600px;
+  margin-left: 30px;
+  margin-right: 30px;
   flex-grow: 1;
   word-wrap: break-word;
 }
 
 .description > h3 {
-  margin-left: 50px;
+  margin-left: 30px;
 }
 
 .description > p {
-  margin-left: 50px;
-  max-width: 600px;
+  margin-left: 30px;
+  margin-right: 30px;
   flex-grow: 1;
   word-wrap: break-word;
 }
@@ -285,6 +286,7 @@ html {
 .description {
   display: flex;
   flex-direction: column;
+  max-width: 975px;
 }
 
 @media screen and (max-width: 1530px) {
