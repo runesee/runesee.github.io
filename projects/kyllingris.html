@@ -2,30 +2,34 @@
 <html>
   <head>
     <link rel="stylesheet" href="styles.css" />
-    <title>Peasant Rebellion - runesee</title>
+    <title>Kylling&Ris - runesee</title>
   </head>
   <body>
     <div id="wrapper">
       <div id="navbar" class="themeGreen">
         <button class="portfolioButton">Portfolio</button>
         <button disabled="true" class="portfolioButton">/</button>
-        <button disabled="true" class="portfolioButton">
-          Peasant Rebellion
-        </button>
+        <button disabled="true" class="portfolioButton">Kylling&Ris</button>
       </div>
       <div class="projectWrapper">
         <div id="projectDescription">
-          <h1>Peasant Rebellion</h1>
+          <h1>Kylling&Ris</h1>
           <p>
-            Peasant Rebellion is a spin-off of the classic Atari game Space
-            Invaders. There are starving peasants approaching in waves trying to
-            attack you by shooting arrows. The goal of the game is to stay alive
-            as long as possible, killing peasants and getting the highest
-            possible score. The game ends when the player loses all their lives.
-            The player is then prompted if they would like to save their score
-            to the global leaderboard, inspired by old arcade machines, which is
-            accessible from the main menu.
+            Kylling&Ris (Chicken&Rice) is a website à la myfitnesspal, which
+            lets users search for and register food they have eaten. The website
+            allows searching, filtering and sorting a set of data gathered from
+            a REST-API containing Norwegian groceries:
+            <a href="https://kassal.app/api">Kassal.app</a>. Users kan easily
+            register food elements by clicking the related pluss button.
+            Afterwards the users can include the weight of the product and
+            select a date. The product will then be shown in a table, which
+            allows east navigation between dates through a calender. In the
+            table users can remove or edit registered elements using the recycle
+            bin and pencil icon respectively.
           </p>
+          <div id="videoWrapper">
+            <img id="projectIntroImg" src="../images/kylling-ris.PNG" />
+          </div>
           <p>
             This game was developed by me and my group members during a software
             architecture course last semester. As a part of the requirements, we
@@ -37,12 +41,6 @@
             that was pretty enjoyable to play (at least in my opinion). A quick
             summary of the game can be viewed on Youtube in the video below.
           </p>
-          <div id="videoWrapper">
-            <a href="https://www.youtube.com/watch?v=UHAvuxEaq4o"
-              ><img id="videoStillframe" src="../images/video_stillframe.png"
-            /></a>
-          </div>
-
           <div class="projectBody">
             <img src="../images/side_menu.png" />
             <div class="projectWrapper projectFirstInfo">
@@ -73,7 +71,7 @@
             found in the repository linked below.
           </p>
           <div id="githubWrapper">
-            <a href="https://github.com/PeasantRebellion-AS/PeasantRebellion"
+            <a href="https://github.com/runesee/kylling-ris/tree/main"
               ><img src="../images/github.png" id="github" />
               <p>Take me to the repository!</p></a
             >
@@ -95,10 +93,7 @@
       /* Possibly the goofiest way to do page navigation. Because why not. */
       function navigate() {
         let currHref = window.location.href;
-        currHref = currHref.replace(
-          "projects/peasantrebellion.html",
-          "index.html"
-        );
+        currHref = currHref.replace("projects/kyllingris.html", "index.html");
         window.location.href = currHref;
       }
     </script>

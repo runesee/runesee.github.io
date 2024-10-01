@@ -175,6 +175,11 @@ html {
   text-align: center;
 }
 
+#projectIntroImg {
+  max-width: 80%;
+  min-width: 400px;
+}
+
 .portfolioButton {
   border: 0;
   padding: 10px;
