@@ -30,51 +30,137 @@
             This game was developed by me and my group members during a software
             architecture course last semester. As a part of the requirements, we
             had to thoroughly consider the architecture of the game before we
-            started programming. The game was written in Kotlin using Android
-            Studio, and it was the first time I developed a mobile application.
-            During the project, I was mainly responsible for the UX and UI
-            design. This project was a lot of fun, and we ended up with a game
-            that was pretty enjoyable to play (at least in my opinion). A quick
-            summary of the game can be viewed on Youtube in the video below.
+            started programming. The most prevalent architectural constraints
+            were the Model-View-Controller (MVC) and Entity-Component-System
+            (ECS) patterns. The game was written in Kotlin using Android Studio,
+            and it was the first time I developed a mobile application. During
+            the project, I was mainly responsible for the UX and UI design (the
+            'V' of MVC). This project was a lot of fun, and we ended up with a
+            game that was pretty enjoyable to play (at least in my opinion). A
+            quick summary of the game can be viewed on Youtube in the video
+            below.
           </p>
           <div id="videoWrapper">
             <a href="https://www.youtube.com/watch?v=UHAvuxEaq4o"
-              ><img id="videoStillframe" src="../images/video_stillframe.png"
+              ><img
+                id="videoStillframe"
+                src="../images/pr/video_stillframe.png"
             /></a>
           </div>
 
           <div class="projectBody">
-            <img src="../images/side_menu.png" />
+            <img src="../images/pr/side_menu.png" />
             <div class="projectWrapper projectFirstInfo">
-              <p class="projectParagraphLeft">TODO</p>
-              <p class="projectParagraphLeft">TODO</p>
-              <p class="projectParagraphLeft">TODO</p>
+              <p class="projectParagraphLeft">
+                One of my favorite details in Peasant Rebellion is the art
+                style. It is inspired by old 8-bit games and Flash games like
+                Age of War. We tried to use mostly free-to-use 2d sprites,
+                animations and pixel art for this project. As this was just a
+                school project we did take some liberties, however. One of which
+                being playing music from the video game Europa Universalis IV in
+                the background.
+              </p>
+              <p class="projectParagraphLeft">
+                We definitely did not take ourselves too seriously when
+                developing this game, and I think that might be part of why
+                developing it was so enjoyable. The game and its art is
+                definitely a little silly.
+              </p>
+              <p class="projectParagraphLeft">
+                I mainly worked on the various menus in the game and their
+                related functionality (like pausing the game and menu
+                navigation). I also made the backdrop by layering two
+                see-through textures on a green background. Most of my work I
+                did in MS Paint and GIMP, and some would say that it definitely
+                shows. To us, it is precisely what gives the game its charm. It
+                invokes nostalgia by resembling old, somewhat thrown-together
+                web games of the early 2000s.
+              </p>
+              <p class="projectParagraphLeft">
+                The side menu on the right, as well as the heart and coin
+                containers, were made entirely in Paint. The side menu links to
+                a settings page and the upgrade shop.
+              </p>
             </div>
           </div>
           <div class="projectBody">
             <div class="projectWrapper projectSecondInfo">
-              <p class="projectParagraphRight">TODO</p>
-              <p class="projectParagraphRight">TODO</p>
-              <p class="projectParagraphRight">TODO</p>
+              <p class="projectParagraphRight">
+                When clicking the upgrade icon a shop with various purchasable
+                upgrades appears, and the game is temporarily paused. Once
+                enough coins are collected by slaying foes, these upgrades
+                become available for purchase. The best of these is obviously
+                the triple shot upgrade (not all team members agreed on this,
+                but it definitely is!).
+              </p>
+              <p class="projectParagraphRight">
+                The shop menu itself I also made in Paint, and it is inspired by
+                medieval taverns. The buttons, coins and text is rendered on top
+                of the menu. I used an old-looking Microsoft font for displaying
+                the text. Rendering was initially a bit tricky using LibGDX, but
+                we quickly got the hang of it.
+              </p>
+              <p class="projectParagraphRight">
+                I painstakingly hand-edited each shop button icon using my
+                keyboard and mouse. When the only other easily available, free
+                alternatives are GIMP or mismatching sprites on OpenGameArt, I
+                once again opted for trusty old MS Paint. This was definitely a
+                reoccuring theme. I know I can be stubborn at times, but as Rema
+                1000 states, "The simplest is often the best".
+              </p>
             </div>
-            <img id="projectSecondImage" src="../images/shop_menu.png" />
+            <img id="projectSecondImage" src="../images/pr/shop_menu.png" />
           </div>
           <div class="projectBody">
-            <img src="../images/start_menu.png" />
+            <img src="../images/pr/start_menu_final.png" />
             <div class="projectWrapper projectFirstInfo">
-              <p class="projectParagraphLeft">TODO</p>
-              <p class="projectParagraphLeft">TODO</p>
-              <p class="projectParagraphLeft">TODO</p>
+              <p class="projectParagraphLeft">
+                The main menu is another one of my proud creations! Or in
+                hindsight... perhaps not my best work. At the time I remember
+                being very happy with making the cross guard of the sword merge
+                together with the game's title. Looking back on it now, the menu
+                is a little too messy for my liking.
+              </p>
+              <p class="projectParagraphLeft">
+                The Mutliplayer button being boarded up was intended to show the
+                users that this feature is a WIP. Some of us wished to continue
+                developing the app after our final hand-in. We especially
+                thought it would be cool to upload the game to Google Play one
+                day. Whether anyone else has worked on the game since, I doubt.
+                In other words, multiplayer is likely staying boarded up for
+                good.
+              </p>
+              <p class="projectParagraphLeft">
+                Originally we intended to implement a multiplayer feature
+                similar to how Bloons TD Battles works: two players fight
+                enemies on their own, but can use the in-game currency to send
+                more enemies to their foe in an attempt to overwhelm them.
+              </p>
+              <p class="projectParagraphLeft">
+                We realized there would unfortunately not be enough time to
+                complete this feature, so we opted for a simple leaderboard
+                system. After losing all of your lives, you can enter a name
+                just like in old arcades, and the names with the highest scores
+                get displayed on the public leaderboard. The leaderboard was
+                stored on a Firebase store. Whether it is still operational, I
+                am unsure.
+              </p>
             </div>
           </div>
-          <p>TODO</p>
+          <p>
+            Overall developing for Android was a lot of fun - probably mostly
+            because of my great teammates and the uplifting atmosphere they
+            brought. Ashley ECS and LibGDX took some getting used to, but we got
+            the hang of it soon enough. This project was a good learning
+            experience, and we ended up with a surprisingly addicting game.
+          </p>
           <p>
             Further instructions for how to run and play the project can be
             found in the repository linked below.
           </p>
           <div id="githubWrapper">
             <a href="https://github.com/PeasantRebellion-AS/PeasantRebellion"
-              ><img src="../images/github.png" id="github" />
+              ><img src="../images/common/github.png" id="github" />
               <p>Take me to the repository!</p></a
             >
           </div>

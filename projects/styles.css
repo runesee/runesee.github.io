@@ -172,6 +172,7 @@ html {
 }
 
 #videoWrapper {
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -215,7 +216,8 @@ html {
 }
 
 .projectBody > img {
-  max-width: 50%;
+  min-width: 400px;
+  max-width: 40%;
   height: auto;
 }
 
