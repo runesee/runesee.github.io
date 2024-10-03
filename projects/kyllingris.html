@@ -6,53 +6,148 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="navbar" class="themeGreen">
+      <div id="navbar" class="themeBlue">
         <button class="portfolioButton">Portfolio</button>
         <button disabled="true" class="portfolioButton">/</button>
         <button disabled="true" class="portfolioButton">Kylling&Ris</button>
       </div>
       <div class="projectWrapper">
         <div id="projectDescription">
-          <h1>Kylling&Ris</h1>
+          <h1 style="color: #2275c3">
+            Kylling<span style="color: #c62c28">&</span>Ris
+          </h1>
           <p>
             Kylling&Ris (Chicken&Rice) is a website à la myfitnesspal, which
             lets users search for and register food they have eaten. The website
             allows searching, filtering and sorting a set of data gathered from
             a REST-API containing Norwegian groceries:
             <a href="https://kassal.app/api">Kassal.app</a>. Users kan easily
-            register food elements by clicking the related pluss button.
+            register food elements by clicking the related plus button.
             Afterwards the users can include the weight of the product and
             select a date. The product will then be shown in a table, which
-            allows east navigation between dates through a calender. In the
+            allows easy navigation between dates through a calender. In the
             table users can remove or edit registered elements using the recycle
-            bin and pencil icon respectively.
+            bin and pencil icons, respectively.
           </p>
           <div id="videoWrapper">
             <img id="projectIntroImg" src="../images/kr/kylling-ris.PNG" />
           </div>
-          <p></p>
           <div class="projectBody">
-            <img src="" />
             <div class="projectWrapper projectFirstInfo">
-              <p class="projectParagraphLeft"></p>
-              <p class="projectParagraphLeft"></p>
-              <p class="projectParagraphLeft"></p>
+              <h3>Technical requirements</h3>
+              <ul>
+                <li>
+                  The Application is made with React, Typescript and set up with
+                  Vite.
+                </li>
+                <li>
+                  State management using redux. Search settings and the log date
+                  are saved.
+                </li>
+                <li>
+                  Uses imported third party components like datepicker-calender
+                  and infinite scroll elements.
+                </li>
+                <li>
+                  Uses Neo4j for backend database. Uses GraphQL, Apollo Server
+                  and Apollo Client for queries. Approx. 7500 different food
+                  objects stored in the database.
+                </li>
+                <li>
+                  Prettier has (mostly) been used during the project to format
+                  code. Prettier and Eslint were run on the entire project
+                  before the final hand-in.
+                </li>
+                <li>
+                  We set up tests for the frontend, and backend is tested
+                  (somewhat) in end-to-end test of food search. We also manually
+                  tested queries and mutations with Apollo Server sandbox.
+                </li>
+                <li>
+                  Comments were used during the project to explain the code.
+                </li>
+              </ul>
             </div>
           </div>
           <div class="projectBody">
             <div class="projectWrapper projectSecondInfo">
-              <p class="projectParagraphRight"></p>
-              <p class="projectParagraphRight"></p>
-              <p class="projectParagraphRight"></p>
+              <h3>Functional requirements</h3>
+              <ul>
+                <li>Possible to search using a search bar.</li>
+                <li>
+                  List based presentation of search with dynamic loading of
+                  additional results through scrolling.
+                </li>
+                <li>
+                  Relevant info about food object is shown by searching or in
+                  the log table.
+                </li>
+                <li>
+                  Each food object in search results can be clicked to see more
+                  info.
+                </li>
+                <li>
+                  Results can be sorted and filtered (allergies, protein and
+                  such).
+                </li>
+                <li>
+                  The user generated data consist of the food log and its
+                  related user.
+                </li>
+                <li>
+                  Data is saved on the server. If you do not make a user, you
+                  are given a guest user so that the data is still saved on the
+                  server.
+                </li>
+                <li>The application has a responsive design.</li>
+                <li>
+                  The database and backend was originally set up on a virtual
+                  machine provided by the course staff. As we no longer have
+                  access to it, the backend part of the application will not
+                  work.
+                </li>
+              </ul>
             </div>
-            <img id="projectSecondImage" src="" />
           </div>
+          <h2>Availability</h2>
           <div class="projectBody">
-            <img src="" />
             <div class="projectWrapper projectFirstInfo">
-              <p class="projectParagraphLeft"></p>
-              <p class="projectParagraphLeft"></p>
-              <p class="projectParagraphLeft"></p>
+              <h3>Ability to view and use the website</h3>
+              <ul>
+                <li>Added aria-labels to support screen readers.</li>
+                <li>
+                  Suitable text distance and choice of colours with clear
+                  contrast to ensure readability.
+                </li>
+                <li>Added text alternatives to non-text content.</li>
+                <li>All essential functionality is accessible by keyboard.</li>
+                <li>
+                  Navigation is simple as the website only consists of three
+                  pages.
+                </li>
+                <li>We have tried to limit overuse of the div/span tag.</li>
+              </ul>
+              <h3>Understandability</h3>
+              <ul>
+                <li>
+                  Added "Kaloriteller" (Calorie counter) as a sub text in the
+                  logo to ensure users understand the purpose of the
+                  application.
+                </li>
+                <li>
+                  Added descriptive help text in the food log when the user has
+                  not added any items.
+                </li>
+                <li>
+                  Added different styling when components are focused to
+                  communicate to the user that the components can be interacted
+                  with.
+                </li>
+                <li>
+                  The website helps the user avoid errors. It is for instance
+                  not possible to add food in the future.
+                </li>
+              </ul>
             </div>
           </div>
           <p></p>

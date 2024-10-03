@@ -282,6 +282,15 @@ html {
   color: #f7fff7;
 }
 
+.themeBlue {
+  background-color: #2275c3;
+}
+
+.themeBlue > button {
+  background-color: #2275c3;
+  color: #f7fff7;
+}
+
 #github {
   max-height: 50px;
 }
