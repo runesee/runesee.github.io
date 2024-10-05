@@ -151,6 +151,11 @@ html {
   text-decoration: underline #343434;
 }
 
+#projectDescription > h2 {
+  text-align: center;
+  align-items: center;
+}
+
 #projectDescription {
   padding: 1% 15% 0 15%;
 }
@@ -308,6 +313,11 @@ html {
   display: flex;
   flex-direction: column;
   max-width: 975px;
+}
+
+.tldr {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 @media screen and (max-width: 1530px) {

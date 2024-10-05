@@ -11,17 +11,19 @@
         <button disabled="true" class="portfolioButton">Portfolio</button>
       </div>
       <div id="personalia">
-        <img id="pimg" src="images/common/portrait.jpg" />
+        <img
+          id="pimg"
+          alt="portrait of Rune"
+          src="images/common/portrait.jpg"
+        />
         <div class="description">
           <h3>Hello, my name is Rune Seeland!</h3>
           <p>
             I am a software engineer student at NTNU Trondheim. I am currently
             on my fourth year of my master's, and this is my portfolio
-            containing projects I have worked on as a part of my studies or in
-            my spare time. There are far too many coding projects from my
-            studies to cover here, so I have only included the ones that were
-            the most educational to me. More info on each project can be found
-            on their respective pages below, or on my
+            containing some of the projects I have worked on as a part of my
+            studies or in my spare time. More information about each project can
+            be found on their respective pages below, or on my
             <a href="https://github.com/runesee">GitHub page</a>.
           </p>
         </div>
@@ -29,7 +31,7 @@
       <div id="projects">
         <div id="middleKingdomWrapper" class="projectElement">
           <a href="./projects/middlekingdom.html"
-            ><img src="images/mk/egy.png"
+            ><img alt="image of egypt" src="images/mk/egy.png"
           /></a>
           <div class="description">
             <h3>Middle Kingdom</h3>
@@ -48,7 +50,9 @@
         </div>
         <div id="placeholderWrapper" class="projectElement">
           <a href="./projects/peasantrebellion.html"
-            ><img src="images/pr/main_menu.png"
+            ><img
+              alt="image of the Peasant Rebellion game"
+              src="images/pr/main_menu.png"
           /></a>
           <div class="description">
             <h3>Peasant Rebellion</h3>
@@ -67,11 +71,24 @@
         </div>
         <div id="placeholderWrapper2" class="projectElement">
           <a href="projects/kyllingris.html"
-            ><img src="images/kr/logo.png"
+            ><img
+              alt="logo of the Kylling&Ris webpage"
+              src="images/kr/logo.png"
           /></a>
           <div class="description">
             <h3>Kylling&Ris</h3>
-            <p>More info coming soon.</p>
+            <p>
+              Kylling&Ris (Chicken&Rice) is a website à la myfitnesspal, which
+              lets users search for and register food they have eaten. The
+              website allows searching, filtering and sorting a set of data
+              gathered from the Kassal.app REST-API containing Norwegian
+              groceries. Users kan easily register food elements by clicking the
+              related plus button. Afterwards the users can include the weight
+              of the product and select a date. The product will then be shown
+              in a table, which allows easy navigation between dates through a
+              calender. In the table users can remove or edit registered...
+              <a href="projects/kyllingris.html">read more</a>
+            </p>
           </div>
         </div>
       </div>
@@ -79,7 +96,7 @@
         <h3>@runesee</h3>
       </div>
     </div>
-    <img id="popduck" src="images\duck\duck_full.png" />
+    <img id="popduck" alt="image of a duck" src="images\duck\duck_full.png" />
     <script>
       var popduck = document.getElementById("popduck");
       popduck.addEventListener("click", pop);

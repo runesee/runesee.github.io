@@ -29,12 +29,36 @@
             table users can remove or edit registered elements using the recycle
             bin and pencil icons, respectively.
           </p>
+          <p>
+            During this project I mainly worked on the frontend. One of the
+            requirements for this project was to have a responsive design. While
+            we did not follow a mobile-first approach, we did a lot of testing
+            to ensure the application worked well on various screen sizes. I
+            personally spent a lot of time ensuring the three pages all had
+            dynamic, sleek designs. This was a bit tricky as the dynamic loading
+            of data would add extra elements to the page, and we used a third
+            party component for the dynamic scrollable list.
+          </p>
+          <h2><b>TL;DR</b></h2>
+          <p>
+            <b>
+              An interactive calorie counter app using Neo4J and GraphQL to
+              store and present 7500 Norwegian groceries gathered from an API.
+              Users can log food eaten on specific dates, and the data is saved
+              in the database. The design is responsive and works on both mobile
+              and larger screens. Made using React, Vite and Typescript.
+            </b>
+          </p>
           <div id="videoWrapper">
-            <img id="projectIntroImg" src="../images/kr/kylling-ris.PNG" />
+            <img
+              id="projectIntroImg"
+              alt="image of the main page"
+              src="../images/kr/mainpage.PNG"
+            />
           </div>
           <div class="projectBody">
+            <h2>Technical requirements</h2>
             <div class="projectWrapper projectFirstInfo">
-              <h3>Technical requirements</h3>
               <ul>
                 <li>
                   The Application is made with React, Typescript and set up with
@@ -70,8 +94,48 @@
             </div>
           </div>
           <div class="projectBody">
+            <h2>Usability & Availability</h2>
             <div class="projectWrapper projectSecondInfo">
-              <h3>Functional requirements</h3>
+              <ul>
+                <li>Added aria-labels to support screen readers.</li>
+                <li>
+                  Suitable text distance and choice of colours with clear
+                  contrast to ensure readability.
+                </li>
+                <li>
+                  Added text alternatives to non-text content. All essential
+                  functionality is also accessible by keyboard.
+                </li>
+
+                <li>
+                  Navigation is simple as the website only consists of three
+                  pages.
+                </li>
+                <li>We have tried to limit overuse of the div/span tag.</li>
+                <li>
+                  Added "Kaloriteller" (Calorie counter) as a sub text in the
+                  logo to ensure that users understand the purpose of the
+                  application.
+                </li>
+                <li>
+                  Added descriptive help text in the food log when the user has
+                  not added any items.
+                </li>
+                <li>
+                  Added different styling when components are focused to
+                  communicate to the user that the components can be interacted
+                  with.
+                </li>
+                <li>
+                  The website helps the user avoid errors. It is for instance
+                  not possible to add food in the future.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="projectBody">
+            <h2>Functional requirements</h2>
+            <div class="projectWrapper projectSecondInfo">
               <ul>
                 <li>Possible to search using a search bar.</li>
                 <li>
@@ -109,55 +173,77 @@
               </ul>
             </div>
           </div>
-          <h2>Availability</h2>
           <div class="projectBody">
-            <div class="projectWrapper projectFirstInfo">
-              <h3>Ability to view and use the website</h3>
-              <ul>
-                <li>Added aria-labels to support screen readers.</li>
-                <li>
-                  Suitable text distance and choice of colours with clear
-                  contrast to ensure readability.
-                </li>
-                <li>Added text alternatives to non-text content.</li>
-                <li>All essential functionality is accessible by keyboard.</li>
-                <li>
-                  Navigation is simple as the website only consists of three
-                  pages.
-                </li>
-                <li>We have tried to limit overuse of the div/span tag.</li>
-              </ul>
-              <h3>Understandability</h3>
-              <ul>
-                <li>
-                  Added "Kaloriteller" (Calorie counter) as a sub text in the
-                  logo to ensure users understand the purpose of the
-                  application.
-                </li>
-                <li>
-                  Added descriptive help text in the food log when the user has
-                  not added any items.
-                </li>
-                <li>
-                  Added different styling when components are focused to
-                  communicate to the user that the components can be interacted
-                  with.
-                </li>
-                <li>
-                  The website helps the user avoid errors. It is for instance
-                  not possible to add food in the future.
-                </li>
-              </ul>
+            <img
+              alt="mobile view of the main page"
+              src="../images/kr/mobile.png"
+            />
+            <div class="projectWrapper projectSecondInfo">
+              <p class="projectParagraphLeft">
+                This image shows the mobile version of the main page. The search
+                and log elements are divided into each their own tabs. We
+                originally wished to have the tab buttons be on the bottom of
+                the view, as it would be easier to reach with your thumbs on
+                mobile. I unfortunately eventually had to give up on this due to
+                limitations with the third party component we used.
+              </p>
+              <p class="projectParagraphLeft">
+                In the top right you can see we are currently "logged in" as a
+                guest user. Data from guests are also stored in the database. We
+                discussed only saving this data in local storage, but figured
+                the examinators might not bother creating an account to test our
+                app. Therefore it would be better to store all user generated
+                data in the database, even if not logged in.
+              </p>
             </div>
           </div>
-          <p></p>
+          <div class="projectBody">
+            <div class="projectWrapper projectFirstInfo">
+              <p class="projectParagraphRight">
+                The other pages of the application are the 'register user' and
+                'log in' pages. The former can be seen here. These pages can be
+                accessed by clicking the account icon on the main page.
+              </p>
+              <p class="projectParagraphRight">
+                Security was not prioritized in this project. To us, the app's
+                usability was a much greater concern. Further, the application
+                was only intended to be running during this project, and the
+                course did not specify any security requirements. Passwords were
+                therefore stored in cleartext in the database.
+              </p>
+            </div>
+            <img
+              alt="image of register user page"
+              src="../images/kr/register.png"
+            />
+          </div>
+          <p>
+            During this project I learned a lot about responsive frontend
+            design. It was at times very tedious, and it took a bazillion errors
+            before I got it finally right. In the end, we were very happy with
+            the design. We decided to use Typescript for this project, as we had
+            never used it before. It was not very different from JS, and easy to
+            use with React.
+          </p>
+          <p>
+            One thing I regret is only working on the frontend. While all group
+            members would use the Apollo client to view the database content and
+            try queries, one person more or less single handedly set up our
+            entire backend. We greatly appreciated this at the time, but in
+            hindsight it would have been nice to gain more backend development
+            experience.
+          </p>
           <p>
             Further instructions for how to run and play the project can be
             found in the repository linked below.
           </p>
           <div id="githubWrapper">
             <a href="https://github.com/runesee/kylling-ris/tree/main"
-              ><img src="../images/common/github.png" id="github" />
+              ><img
+                src="../images/common/github.png"
+                alt="GitHub logo"
+                id="github"
+              />
               <p>Take me to the repository!</p></a
             >
           </div>
@@ -168,10 +254,6 @@
       </div>
     </div>
     <script>
-      //TODO: Add experience gained from project and repo link button
-      //TODO: Add language selector https://stackoverflow.com/questions/32008125/using-javascript-to-change-website-language
-      //TODO: update main page
-      //TODO: upload other projects and create new pages
       let bttn = document.getElementsByClassName("portfolioButton")[0];
       bttn.addEventListener("click", navigate);
 
