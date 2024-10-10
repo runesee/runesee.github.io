@@ -176,12 +176,12 @@ html {
   opacity: 0.9;
 }
 
-#videoWrapper {
+.videoWrapper {
   margin-top: 40px;
   text-align: center;
 }
 
-#projectIntroImg {
+.projectIntroImg {
   max-width: 80%;
   min-width: 400px;
 }
@@ -239,16 +239,23 @@ html {
   margin-left: 50px;
 }
 
-#placeholderWrapper {
+#peasantWrapper {
   background-color: #7f9172;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   margin-left: 25px;
   margin-right: 25px;
 }
 
-#placeholderWrapper2 {
+#kyllingWrapper {
   background-color: #72a1e5;
   margin-left: 50px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#happyWrapper {
+  background-color: #aa8474;
+  margin-left: 25px;
+  margin-right: 25px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -259,6 +266,15 @@ html {
 .themeBrown > button {
   background-color: #c9af75;
   color: black;
+}
+
+.themeDarkBrown {
+  background-color: #5e3d1f;
+}
+
+.themeDarkBrown > button {
+  background-color: #5e3d1f;
+  color: white;
 }
 
 .themeBrown > button:enabled {
@@ -320,7 +336,15 @@ html {
   margin-bottom: 40px;
 }
 
-@media screen and (max-width: 1530px) {
+.projectFirstInfo {
+  margin-top: 0px;
+}
+
+.marginTopDefault {
+  margin-top: 80px;
+}
+
+@media screen and (max-width: 1500px) {
   .projectBody {
     flex-direction: column;
   }

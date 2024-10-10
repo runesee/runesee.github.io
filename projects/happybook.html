@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>HappyBook - runesee</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="navbar" class="themeDarkBrown">
+        <button class="portfolioButton">Portfolio</button>
+        <button disabled="true" class="portfolioButton">/</button>
+        <button disabled="true" class="portfolioButton">HappyBook</button>
+      </div>
+      <div class="projectWrapper">
+        <div id="projectDescription">
+          <h1>HappyBook</h1>
+          <p>
+            HappyBook is best described as IMDB for books. Users can search for
+            and review a set of books, and save books they have read or want to
+            read. Admins can add new books and remove existing ones. Data is
+            stored in Firebase, and our backend is still operational. In other
+            words, you can still run the application on your device and fully
+            explore the website.
+          </p>
+          <p>
+            Depicted below is the main page of the website. Here the top ten
+            books are gathered from the database and shown under "Toppliste". A
+            Carousel is showing this week's selected books on the left. This
+            list can unfortunately not be updated through the website's admin
+            interface. In the navbar a burger menu lets users only display books
+            of a certain genre. The HAPPYBOOK button returns from the main page,
+            and the search bar naturally lets users search for books. On the
+            right there is an avatar icon that takes you to the log-in, user and
+            admin pages. Lastly, the button furthest to the right is a darkmode
+            toggle.
+          </p>
+          <div class="videoWrapper">
+            <img class="projectIntroImg" src="../images/hb/mainpage.png" />
+          </div>
+
+          <div class="videoWrapper">
+            <img class="projectIntroImg" src="../images/hb/popup.png" />
+          </div>
+          <p>
+            Clcking on one of the Carousel books will show a pop-up with some
+            information about the book. From here, users can view more
+            information by clicking the link that leads to the "book page". This
+            page can naturally also be reached directly by clicking on any other
+            book element in HappyBook.
+          </p>
+          <h2 class="marginTopDefault">Books & Reviews</h2>
+          <div class="videoWrapper">
+            <img class="projectIntroImg" src="../images/hb/bookpage.png" />
+          </div>
+          <p>
+            On the book page, more information about each book can be seen. Here
+            users can also save books and write reviews.
+          </p>
+          <div class="projectBody">
+            <div class="projectWrapper projectSecondInfo">
+              <p class="projectParagraphRight">
+                Reviews were the final feature we implemented. When logged in,
+                users can add reviews and delete the ones they have written. As
+                shown in the image, admins can delete all reviews.
+              </p>
+              <p class="projectParagraphRight">
+                As security was not a requirement for this course, users are
+                simply identified by the email they used when signing up.
+              </p>
+            </div>
+            <img src="../images/hb/reviews.png" />
+          </div>
+          <div class="videoWrapper">
+            <img class="projectIntroImg" src="../images/hb/minside.png" />
+          </div>
+          <p>
+            A user's saved books can be viewed on their user page, which can be
+            reached by clicking the avatar icon dropdown on the navbar. This
+            page shows books the user wishes to read or has read, and the user
+            can remove items from these lists by the press of a button. The view
+            is perhaps not ideal - all items are stored in a scrollable list. If
+            you have many items saved, finding the one you want to remove could
+            become cumbersome.
+          </p>
+          <h2 class="marginTopDefault">Search</h2>
+          <div class="projectBody">
+            <img src="../images/hb/search.png" />
+            <div class="projectWrapper projectFirstInfo">
+              <p class="projectParagraphLeft">
+                I developed the search function in our project, which is
+                something I have never attempted before. It uses a string
+                similarity library to best match results with your search. When
+                clicking on a result, a book page is dynamically generated based
+                on the book's id. Further, a book named 'tittel' can be seen in
+                the image. This one has been created manually by an admin using
+                the website.
+              </p>
+              <p class="projectParagraphLeft">
+                The window.location.href bar is used to distinguish between
+                searches. A search without filters for 'harry' will use the link
+                'search/:all/:harry'. Initially 5 items are loaded. Up to 15
+                additional elements can be loaded dynamically. This is to limit
+                queries.
+              </p>
+            </div>
+          </div>
+          <div class="videoWrapper">
+            <img class="projectIntroImg" src="../images/hb/filtersearch.png" />
+          </div>
+          <p>
+            Searches using filters will include the chosen filter in the href
+            structure. As can be seen here, a search for 'harry' with the filter
+            'Fantasy' active creates the search result page
+            'search/:fantasy/:harry'. Book pages work similarly, being
+            structured as 'books/:title;author'.
+          </p>
+          <h2 class="marginTopDefault">Users</h2>
+          <div class="projectBody">
+            <img src="../images/hb/isadmin.png" />
+            <div class="projectWrapper projectFirstInfo">
+              <p class="projectParagraphLeft">
+                As mentioned, the avatar icon lets users navigate to the login
+                page. Here a third option "Admin" is also present. This item is
+                only visible to admin users. Naturally the admin page it links
+                to also checks whether the user is an admin before loading any
+                content. It would not surprise me if this easily can be
+                circumvented, however.
+              </p>
+              <p class="projectParagraphLeft">
+                As security was not a requirement, there is no password strength
+                measures when creating a user. Since Google's Firebase is used
+                for authentication, passwords are stored securely in the
+                database. This does not mean that the application is secure,
+                however. When testing the application, I advise using a junk
+                email and password.
+              </p>
+              <p class="projectParagraphLeft">
+                Also worth mentioning, the log out button is supposed to say
+                "Logg ut" and not "Logg inn" here.
+              </p>
+            </div>
+          </div>
+          <div class="videoWrapper">
+            <img class="projectIntroImg" src="../images/hb/login.png" />
+          </div>
+          <p>
+            Registering simply requires a valid email address (does not have to
+            exist, just be of the right format) and an arbitrary password.
+          </p>
+          <div class="videoWrapper">
+            <img class="projectIntroImg" src="../images/hb/newbook.png" />
+          </div>
+          <p>
+            Admin users have access to a page for creating new books, and
+            deleting existing ones. Books are gathered from the database and
+            presented in a scrollable list. If the database is large, this is
+            definitely not very user friendly. We were under a time crunch,
+            however, so we unfortunately had to cut some corners. Newly created
+            books are added to the database and can be searched for and given
+            reviews just like any other book. A URL for an image can also be
+            added to give the book a cover image.
+          </p>
+          <h2 class="marginTopDefault">Final thoughts</h2>
+          <p>
+            This project was a part of a software development course, and it was
+            the first time I worked with React. I put in a lot of hours on this
+            project (over a hundred), and it was a lot of fun, but also
+            stressful at times. I learned a lot about React (especially hooks
+            and components). I also got experience working on both frontend and
+            backend. As we had not worked with React before, a lot of the
+            development time unfortunately went towards bugfixing.
+          </p>
+          <p>
+            I do fear that I perhaps involved myself too much with other
+            people's issues during this project. As I ended up working with
+            React Router and the backend, I had to go over and change a lot of
+            pages after their initial implementation. I unfortunately also ended
+            up having to redo quite a lot of frontend work. While I do not enjoy
+            redoing other people's code, quite a few pages were left
+            half-finished or just not up to par with the design of the rest of
+            the application. On multiple ocations I found myself redesigning
+            pages as I knew the original authors would not have time to redo
+            this before the next demo. A specific element of frustration for me
+            was the genre pages never being properly styled, despite being
+            "finished" weeks prior. This was an easy fix, but as nobody else
+            stepped up to the plate the responsibility once again fell on me.
+          </p>
+          <p>
+            I have since learned to discuss a definition of done among the group
+            before development starts. It would definitely have been beneficial
+            for me to have a DoD for HappyBook, as I at times felt like I was
+            playing firefighter.
+          </p>
+          <div class="projectBody">
+            <h3>During this project I worked on</h3>
+            <ul>
+              <li>React Router</li>
+              <li>Search (frontend and backend)</li>
+              <li>Individual book page (frontend and backend)</li>
+              <li>
+                Getter util function for books in the database using
+                firebase-sql
+              </li>
+              <li>
+                Improve admin page (styling, delete book functionality and
+                linking with backend)
+              </li>
+              <li>Connect login and register user pages with backend</li>
+              <li>User page (frontend and backend)</li>
+              <li>Improve styling of main page</li>
+              <li>Navbar (searchbar, avatar icon & routing)</li>
+            </ul>
+          </div>
+          <p>
+            This app can be run by simply cloning the project and running 'npm
+            start' in the appropriate folder. Further instructions linked below.
+            Please keep in mind that the application uses some time to load
+            items from the database initially.
+          </p>
+          <div id="githubWrapper">
+            <a href="https://github.com/runesee/happybook"
+              ><img src="../images/common/github.png" id="github" />
+              <p>Take me to the repository!</p></a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>@runesee</h3>
+      </div>
+    </div>
+    <script>
+      let bttn = document.getElementsByClassName("portfolioButton")[0];
+      bttn.addEventListener("click", navigate);
+
+      /* Possibly the goofiest way to do page navigation. Because why not. */
+      function navigate() {
+        let currHref = window.location.href;
+        currHref = currHref.replace("projects/happybook.html", "index.html");
+        window.location.href = currHref;
+      }
+    </script>
+  </body>
+</html>
