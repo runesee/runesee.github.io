@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Tidepool - runesee</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="navbar" class="themeBlue">
+        <button class="portfolioButton">Portfolio</button>
+        <button disabled="true" class="portfolioButton">/</button>
+        <button disabled="true" class="portfolioButton">Tidepool</button>
+      </div>
+      <div id="tidalpool"></div>
+    </div>
+    <script>
+      let bttn = document.getElementsByClassName("portfolioButton")[0];
+      bttn.addEventListener("click", navigate);
+
+      let tidalpool = document.getElementById("tidalpool");
+      const GRIDSIZE = 30; // Const for adj. grid size
+
+      /* Create square grid of GRIDSIZE size */
+      function createGrid() {
+        tidalpool.innerHTML = "";
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
+        console.log(windowHeight);
+        console.log(windowWidth);
+
+        for (let i = 0; i < GRIDSIZE * GRIDSIZE; i++) {
+          let pixel = document.createElement("div");
+          pixel.className = "tidalPixel";
+          pixel.style.width = Math.floor(windowHeight / GRIDSIZE);
+          pixel.style.height = Math.floor(windowHeight / GRIDSIZE);
+          tidalpool.appendChild(pixel);
+        }
+        spawnStars();
+      }
+
+      function spawnStars() {
+        let totalPixels = GRIDSIZE * GRIDSIZE;
+        let random = Math.floor(Math.random() * totalPixels);
+
+        let tidepool = document.getElementById("tidalpool");
+        let star = tidepool.children[random];
+        star.id = String(random);
+        console.log(star.id);
+        star.className = "tidalStar";
+      }
+
+      function movement(e) {
+        let tidalpool = document.getElementById("tidalpool");
+        let star = document.getElementsByClassName("tidalStar")[0];
+        let index = parseInt(star.id);
+
+        if (e.code === "ArrowUp") {
+          index -= GRIDSIZE;
+        } else if (e.code === "ArrowDown") {
+          index += GRIDSIZE;
+        } else if (e.code === "ArrowRight") {
+          index++;
+        } else if (e.code === "ArrowLeft") {
+          index--;
+        } else {
+          return;
+        }
+
+        let pixel = updateIndex(index, tidalpool);
+
+        if (pixel != null) {
+          pixel.className = "tidalStar";
+          pixel.id = index;
+          star.className = "";
+          star.className = "tidalPixel";
+          star.id = "";
+        }
+      }
+
+      function updateIndex(index, tidalpool) {
+        try {
+          return tidalpool.children[index];
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function spawnWall() {
+        let direction = Math.floor(Math.random() * 4);
+      }
+
+      // Create grid on initial load and update when resizing
+      createGrid();
+      window.addEventListener("resize", createGrid);
+      window.addEventListener("keyup", movement);
+
+      /* Possibly the goofiest way to do page navigation. Because why not. */
+      function navigate() {
+        let currHref = window.location.href;
+        currHref = currHref.replace("projects/tidepool.html", "index.html");
+        window.location.href = currHref;
+      }
+    </script>
+  </body>
+</html>

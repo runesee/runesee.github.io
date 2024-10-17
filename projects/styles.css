@@ -344,6 +344,24 @@ html {
   margin-top: 80px;
 }
 
+#tidalpool {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+  height: 100vh;
+  width: 100vw;
+  gap: 0;
+}
+
+.tidalPixel {
+  float: left;
+  background-color: darkblue;
+}
+
+.tidalStar {
+  background-color: gold;
+  animation: twinkle 3s infinite;
+}
+
 @media screen and (max-width: 1500px) {
   .projectBody {
     flex-direction: column;
@@ -368,5 +386,17 @@ html {
 
   .projectParagraphLeft {
     padding-left: 0;
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.8;
   }
 }
