@@ -49,6 +49,15 @@ html {
   border-bottom: solid 2px #343434;
 }
 
+.faded {
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.faded:hover {
+  opacity: 1;
+}
+
 #personalia {
   margin-top: 100px;
   display: flex;
@@ -360,6 +369,11 @@ html {
 .tidalStar {
   background-color: gold;
   animation: twinkle 3s infinite;
+}
+
+.tidalPlayer {
+  background-color: aqua;
+  border: solid 1 px black;
 }
 
 @media screen and (max-width: 1500px) {

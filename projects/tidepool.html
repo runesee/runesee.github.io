@@ -6,7 +6,7 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="navbar" class="themeBlue">
+      <div id="navbar" class="themeBlue faded">
         <button class="portfolioButton">Portfolio</button>
         <button disabled="true" class="portfolioButton">/</button>
         <button disabled="true" class="portfolioButton">Tidepool</button>
@@ -17,82 +17,289 @@
       let bttn = document.getElementsByClassName("portfolioButton")[0];
       bttn.addEventListener("click", navigate);
 
-      let tidalpool = document.getElementById("tidalpool");
+      var tidalpool = document.getElementById("tidalpool");
       const GRIDSIZE = 30; // Const for adj. grid size
+      var sleepTime = 100;
+      var fastMovement = false;
+
+      // Define arrays containing wall starting positions
+      let westStartingIDs = new Array();
+      let northStartingIDs = new Array();
+      let eastStartingIDs = new Array();
+      let southStartingIDs = new Array();
+
+      for (let i = 0; i < GRIDSIZE * GRIDSIZE; i++) {
+        if (i % GRIDSIZE === 0) {
+          westStartingIDs[westStartingIDs.length] = i;
+          eastStartingIDs[eastStartingIDs.length] = i + 30 - 1;
+        }
+      }
+      for (let i = 0; i < GRIDSIZE; i++) {
+        northStartingIDs[northStartingIDs.length] = i;
+        southStartingIDs[southStartingIDs.length] = GRIDSIZE * GRIDSIZE - i - 1;
+      }
 
       /* Create square grid of GRIDSIZE size */
       function createGrid() {
         tidalpool.innerHTML = "";
         let windowWidth = window.innerWidth;
         let windowHeight = window.innerHeight;
-        console.log(windowHeight);
-        console.log(windowWidth);
 
-        for (let i = 0; i < GRIDSIZE * GRIDSIZE; i++) {
-          let pixel = document.createElement("div");
-          pixel.className = "tidalPixel";
-          pixel.style.width = Math.floor(windowHeight / GRIDSIZE);
-          pixel.style.height = Math.floor(windowHeight / GRIDSIZE);
-          tidalpool.appendChild(pixel);
+        for (let i = 0; i < GRIDSIZE; i++) {
+          for (let j = 0; j < GRIDSIZE; j++) {
+            let pixel = document.createElement("div");
+            pixel.className = "tidalPixel";
+            pixel.id = String(i) + "," + String(j);
+            pixel.style.width = Math.floor(windowHeight / GRIDSIZE);
+            pixel.style.height = Math.floor(windowHeight / GRIDSIZE);
+            tidalpool.appendChild(pixel);
+          }
         }
-        spawnStars();
       }
 
+      /* Deprecated function for spawning a single 'star' pixel randomly */
       function spawnStars() {
         let totalPixels = GRIDSIZE * GRIDSIZE;
         let random = Math.floor(Math.random() * totalPixels);
-
-        let tidepool = document.getElementById("tidalpool");
-        let star = tidepool.children[random];
+        let star = tidalpool.children[random];
         star.id = String(random);
-        console.log(star.id);
         star.className = "tidalStar";
       }
 
+      /* Function triggered on keyup event. Controls player movement. */
       function movement(e) {
-        let tidalpool = document.getElementById("tidalpool");
-        let star = document.getElementsByClassName("tidalStar")[0];
-        let index = parseInt(star.id);
-
-        if (e.code === "ArrowUp") {
-          index -= GRIDSIZE;
-        } else if (e.code === "ArrowDown") {
-          index += GRIDSIZE;
-        } else if (e.code === "ArrowRight") {
-          index++;
-        } else if (e.code === "ArrowLeft") {
-          index--;
-        } else {
+        if (e.code === "ControlLeft") {
+          fastMovement = false;
           return;
         }
-
-        let pixel = updateIndex(index, tidalpool);
-
-        if (pixel != null) {
-          pixel.className = "tidalStar";
-          pixel.id = index;
-          star.className = "";
-          star.className = "tidalPixel";
-          star.id = "";
+        if (fastMovement) {
+          moveSteps(5, e.code);
+        } else {
+          moveSteps(1, e.code);
         }
       }
 
-      function updateIndex(index, tidalpool) {
+      /* Helper function for moving. Moves one step at a time until 'steps' reached, or a wall or border is hit*/
+      function moveSteps(steps, keycode) {
+        let currentIndex = document.getElementsByClassName("tidalPlayer")[0].id;
+        let i = currentIndex.split(",");
+        let j = parseInt(i[1]);
+        i = parseInt(i[0]);
+        let newIndex;
+
+        if (keycode === "ArrowUp") {
+          for (let a = 0; a < steps; a++) {
+            try {
+              i--;
+              newIndex = String(i) + "," + String(j);
+              let wallColor =
+                document.getElementById(newIndex).style.backgroundColor;
+              if (wallColor === "darkred") {
+                return;
+              }
+              document.getElementById(currentIndex).className = "tidalPixel";
+              document.getElementById(newIndex).className =
+                "tidalPixel tidalPlayer";
+              currentIndex = newIndex;
+            } catch (error) {
+              return;
+            }
+          }
+        } else if (keycode === "ArrowDown") {
+          for (let a = 0; a < steps; a++) {
+            try {
+              i++;
+              newIndex = String(i) + "," + String(j);
+              let wallColor =
+                document.getElementById(newIndex).style.backgroundColor;
+              if (wallColor === "darkred") {
+                return;
+              }
+              document.getElementById(currentIndex).className = "tidalPixel";
+              document.getElementById(newIndex).className =
+                "tidalPixel tidalPlayer";
+              currentIndex = newIndex;
+            } catch (error) {
+              return;
+            }
+          }
+        } else if (keycode === "ArrowRight") {
+          for (let a = 0; a < steps; a++) {
+            try {
+              j++;
+              newIndex = String(i) + "," + String(j);
+              let wallColor =
+                document.getElementById(newIndex).style.backgroundColor;
+              if (wallColor === "darkred") {
+                return;
+              }
+              document.getElementById(currentIndex).className = "tidalPixel";
+              document.getElementById(newIndex).className =
+                "tidalPixel tidalPlayer";
+              currentIndex = newIndex;
+            } catch (error) {
+              return;
+            }
+          }
+        } else if (keycode === "ArrowLeft") {
+          for (let a = 0; a < steps; a++) {
+            try {
+              j--;
+              newIndex = String(i) + "," + String(j);
+              let wallColor =
+                document.getElementById(newIndex).style.backgroundColor;
+              if (wallColor === "darkred") {
+                return;
+              }
+              document.getElementById(currentIndex).className = "tidalPixel";
+              document.getElementById(newIndex).className =
+                "tidalPixel tidalPlayer";
+              currentIndex = newIndex;
+            } catch (error) {
+              return;
+            }
+          }
+        }
+      }
+
+      /* Returns true if a wall is blocking the target endpoint or path to it. Otherwise returns true*/
+      function wallBlockingPath(i, j, index, keycode) {
+        // Check if endpoint index has a wall
+        let endpoint = document.getElementById(index);
+        if (endpoint.style.backgroundColor === "darkred") {
+          return null;
+        } // Check if path between start and endpoint has a wall
+        else if (fastMovement) {
+          if (keycode === "ArrowUp") {
+            for (let a = 1; a < 5; a++) {
+              let tempElement = document.getElementById(
+                String(parseInt(i) + a) + "," + j
+              );
+              if (tempElement.style.backgroundColor === "darkred") {
+                return tempElement.id;
+              }
+            }
+          } else if (keycode === "ArrowDown") {
+            for (let a = 1; a < 5; a++) {
+              let tempElement = document.getElementById(
+                String(parseInt(i) - a) + "," + j
+              );
+              if (tempElement.style.backgroundColor === "darkred") {
+                return tempElement.id;
+              }
+            }
+          } else if (keycode === "ArrowRight") {
+            for (let a = 1; a < 5; a++) {
+              let tempElement = document.getElementById(
+                i + "," + String(parseInt(j) - a)
+              );
+              if (tempElement.style.backgroundColor === "darkred") {
+                return tempElement.id;
+              }
+            }
+          } else {
+            for (let a = 1; a < 5; a++) {
+              let tempElement = document.getElementById(
+                i + "," + String(parseInt(j) + a)
+              );
+              if (tempElement.style.backgroundColor === "darkred") {
+                return tempElement.id;
+              }
+            }
+          }
+        }
+        return endpoint.id;
+      }
+
+      /* Toggle 5x movement if left control is pressed */
+      function enableFastMovement(e) {
+        if (e.code === "ControlLeft") {
+          fastMovement = true;
+        }
+      }
+
+      /* Returns index if within bounds. Otherwise return null. */
+      function setIndexIfWithinBounds(index) {
         try {
-          return tidalpool.children[index];
+          return document.getElementById(index);
         } catch (error) {
           return null;
         }
       }
 
+      /* Function for spawning a wall in one of four 'cardinal' directions */
       function spawnWall() {
         let direction = Math.floor(Math.random() * 4);
+        let holeCount = Math.floor(Math.random() * 3);
+        let currentWall = new Array();
+        let dict = new Map();
+
+        if (direction === 0) {
+          for (let i = 0; i < GRIDSIZE; i++) {
+            currentWall.push(String(i) + ",0");
+            dict.set(direction, currentWall);
+            document.getElementById(String(i) + ",0").style.backgroundColor =
+              "darkred";
+          }
+        } else if (direction === 1) {
+          for (let i = 0; i < GRIDSIZE; i++) {
+            currentWall.push("0," + String(i));
+            dict.set(direction, currentWall);
+            document.getElementById("0," + String(i)).style.backgroundColor =
+              "darkred";
+          }
+        } else if (direction === 2) {
+          for (let i = 0; i < GRIDSIZE; i++) {
+            currentWall.push(String(i) + ",29");
+            dict.set(direction, currentWall);
+            document.getElementById(String(i) + ",29").style.backgroundColor =
+              "darkred";
+          }
+        } else {
+          for (let i = 0; i < GRIDSIZE; i++) {
+            currentWall.push("29," + String(i));
+            dict.set(direction, currentWall);
+            document.getElementById("29," + String(i)).style.backgroundColor =
+              "darkred";
+          }
+        }
+        return dict;
       }
 
-      // Create grid on initial load and update when resizing
-      createGrid();
-      window.addEventListener("resize", createGrid);
-      window.addEventListener("keyup", movement);
+      function moveWall(wall) {
+        let direction = wall.keys().next().value;
+      }
+
+      function checkIfPlayerInWall() {}
+
+      /* Spawns a player cell roughly in the center of the grid */
+      function spawnPlayer() {
+        let player = tidalpool.children[465];
+        player.className = "tidalPixel tidalPlayer";
+      }
+
+      /* Initializing function */
+      function start() {
+        // Create grid and add movement listener
+        createGrid();
+        window.addEventListener("keyup", movement);
+        window.addEventListener("keydown", enableFastMovement);
+
+        // Spawn the player character
+        spawnPlayer();
+
+        // Start the game loop
+        update();
+      }
+
+      /* Main gameloop function */
+      function update() {
+        let wall = spawnWall();
+        moveWall(wall);
+      }
+
+      // Start the game
+      start();
 
       /* Possibly the goofiest way to do page navigation. Because why not. */
       function navigate() {
