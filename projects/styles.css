@@ -44,7 +44,7 @@ html {
   flex-direction: row;
   justify-content: center;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   border-bottom: solid 2px #343434;
 }
@@ -359,6 +359,7 @@ html {
   height: 100vh;
   width: 100vw;
   gap: 0;
+  background-color: darkblue;
 }
 
 .tidalPixel {
@@ -368,7 +369,7 @@ html {
 
 .tidalWall {
   float: left;
-  background-color: darkred;
+  background-color: whitesmoke;
 }
 
 .tidalStar {
@@ -377,8 +378,39 @@ html {
 }
 
 .tidalPlayer {
-  background-color: aqua;
+  background-color: orangered;
   border: solid 1 px black;
+}
+
+#gameStateMenu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+#gameOverMessage {
+  visibility: hidden;
+}
+
+#tidalScore {
+  visibility: hidden;
+}
+
+.tidalCenterMenu {
+  text-align: center;
+}
+
+#startButton {
+  margin-left: calc(50% - 37px);
+}
+#startButton:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1500px) {
