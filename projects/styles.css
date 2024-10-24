@@ -366,6 +366,11 @@ html {
   background-color: darkblue;
 }
 
+.tidalWall {
+  float: left;
+  background-color: darkred;
+}
+
 .tidalStar {
   background-color: gold;
   animation: twinkle 3s infinite;

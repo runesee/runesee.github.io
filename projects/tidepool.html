@@ -21,6 +21,8 @@
       const GRIDSIZE = 30; // Const for adj. grid size
       var sleepTime = 100;
       var fastMovement = false;
+      var persistentWall;
+      var gameEnded = false;
 
       // Define arrays containing wall starting positions
       let westStartingIDs = new Array();
@@ -68,6 +70,9 @@
 
       /* Function triggered on keyup event. Controls player movement. */
       function movement(e) {
+        if (gameEnded) {
+          return;
+        }
         if (e.code === "ControlLeft") {
           fastMovement = false;
           return;
@@ -92,9 +97,8 @@
             try {
               i--;
               newIndex = String(i) + "," + String(j);
-              let wallColor =
-                document.getElementById(newIndex).style.backgroundColor;
-              if (wallColor === "darkred") {
+              let cell = document.getElementById(newIndex).className;
+              if (cell === "tidalWall") {
                 return;
               }
               document.getElementById(currentIndex).className = "tidalPixel";
@@ -110,9 +114,8 @@
             try {
               i++;
               newIndex = String(i) + "," + String(j);
-              let wallColor =
-                document.getElementById(newIndex).style.backgroundColor;
-              if (wallColor === "darkred") {
+              let cell = document.getElementById(newIndex).className;
+              if (cell === "tidalWall") {
                 return;
               }
               document.getElementById(currentIndex).className = "tidalPixel";
@@ -128,9 +131,8 @@
             try {
               j++;
               newIndex = String(i) + "," + String(j);
-              let wallColor =
-                document.getElementById(newIndex).style.backgroundColor;
-              if (wallColor === "darkred") {
+              let cell = document.getElementById(newIndex).className;
+              if (cell === "tidalWall") {
                 return;
               }
               document.getElementById(currentIndex).className = "tidalPixel";
@@ -146,9 +148,8 @@
             try {
               j--;
               newIndex = String(i) + "," + String(j);
-              let wallColor =
-                document.getElementById(newIndex).style.backgroundColor;
-              if (wallColor === "darkred") {
+              let cell = document.getElementById(newIndex).className;
+              if (cell === "tidalWall") {
                 return;
               }
               document.getElementById(currentIndex).className = "tidalPixel";
@@ -166,7 +167,7 @@
       function wallBlockingPath(i, j, index, keycode) {
         // Check if endpoint index has a wall
         let endpoint = document.getElementById(index);
-        if (endpoint.style.backgroundColor === "darkred") {
+        if (endpoint.className === "tidalWall") {
           return null;
         } // Check if path between start and endpoint has a wall
         else if (fastMovement) {
@@ -175,7 +176,7 @@
               let tempElement = document.getElementById(
                 String(parseInt(i) + a) + "," + j
               );
-              if (tempElement.style.backgroundColor === "darkred") {
+              if (tempElement.className === "tidalWall") {
                 return tempElement.id;
               }
             }
@@ -184,7 +185,7 @@
               let tempElement = document.getElementById(
                 String(parseInt(i) - a) + "," + j
               );
-              if (tempElement.style.backgroundColor === "darkred") {
+              if (tempElement.className === "tidalWall") {
                 return tempElement.id;
               }
             }
@@ -193,7 +194,7 @@
               let tempElement = document.getElementById(
                 i + "," + String(parseInt(j) - a)
               );
-              if (tempElement.style.backgroundColor === "darkred") {
+              if (tempElement.className === "tidalWall") {
                 return tempElement.id;
               }
             }
@@ -202,7 +203,7 @@
               let tempElement = document.getElementById(
                 i + "," + String(parseInt(j) + a)
               );
-              if (tempElement.style.backgroundColor === "darkred") {
+              if (tempElement.className === "tidalWall") {
                 return tempElement.id;
               }
             }
@@ -230,47 +231,130 @@
       /* Function for spawning a wall in one of four 'cardinal' directions */
       function spawnWall() {
         let direction = Math.floor(Math.random() * 4);
-        let holeCount = Math.floor(Math.random() * 3);
+        let holeCount = Math.floor(Math.random() * 3) + 1;
         let currentWall = new Array();
         let dict = new Map();
 
         if (direction === 0) {
           for (let i = 0; i < GRIDSIZE; i++) {
             currentWall.push(String(i) + ",0");
-            dict.set(direction, currentWall);
-            document.getElementById(String(i) + ",0").style.backgroundColor =
-              "darkred";
+            document.getElementById(String(i) + ",0").className = "tidalWall";
           }
+          let holeWall = currentWall.slice();
+          for (let j = 0; j < holeCount; j++) {
+            let holePosition = Math.floor(Math.random() * 30);
+            holeWall.splice(String(j) + ",0", 1);
+            document.getElementById(String(j) + ",0").className = "tidalPixel";
+          }
+          console.log(holeWall);
+          dict.set(direction, holeWall);
         } else if (direction === 1) {
           for (let i = 0; i < GRIDSIZE; i++) {
             currentWall.push("0," + String(i));
-            dict.set(direction, currentWall);
-            document.getElementById("0," + String(i)).style.backgroundColor =
-              "darkred";
+            document.getElementById("0," + String(i)).className = "tidalWall";
           }
+          let holeWall = currentWall.slice();
+          for (let j = 0; j < holeCount; j++) {
+            let holePosition = Math.floor(Math.random() * 30);
+            holeWall.splice("0," + String(j), 1);
+            document.getElementById("0," + String(j)).className = "tidalPixel";
+          }
+          console.log(holeWall);
+          dict.set(direction, holeWall);
         } else if (direction === 2) {
           for (let i = 0; i < GRIDSIZE; i++) {
             currentWall.push(String(i) + ",29");
-            dict.set(direction, currentWall);
-            document.getElementById(String(i) + ",29").style.backgroundColor =
-              "darkred";
+            document.getElementById(String(i) + ",29").className = "tidalWall";
           }
+          let holeWall = currentWall.slice();
+          for (let j = 0; j < holeCount; j++) {
+            let holePosition = Math.floor(Math.random() * 30);
+            holeWall.splice(String(j) + ",29", 1);
+            document.getElementById(String(j) + ",29").className = "tidalPixel";
+          }
+          console.log(holeWall);
+          dict.set(direction, holeWall);
         } else {
           for (let i = 0; i < GRIDSIZE; i++) {
             currentWall.push("29," + String(i));
-            dict.set(direction, currentWall);
-            document.getElementById("29," + String(i)).style.backgroundColor =
-              "darkred";
+            document.getElementById("29," + String(i)).className = "tidalWall";
           }
+          let holeWall = currentWall.slice();
+          for (let j = 0; j < holeCount; j++) {
+            let holePosition = Math.floor(Math.random() * 30);
+            holeWall.splice("29," + String(j), 1);
+            document.getElementById("29," + String(j)).className = "tidalPixel";
+          }
+          console.log(holeWall);
+          dict.set(direction, holeWall);
         }
         return dict;
       }
 
       function moveWall(wall) {
         let direction = wall.keys().next().value;
-      }
+        let newCells = [];
+        let newCell;
+        let newId;
+        let firstElementInWall = wall.get(direction)[0];
+        let x = firstElementInWall.split(",");
+        let y = Number(x[1]);
+        x = Number(x[0]);
 
-      function checkIfPlayerInWall() {}
+        // Check if next move is legal
+        if (direction == 0) {
+          newId = String(x) + "," + String(y + 1);
+        } else if (direction == 1) {
+          newId = String(x + 1) + "," + String(y);
+        } else if (direction == 2) {
+          newId = String(x) + "," + String(y - 1);
+        } else {
+          newId = String(x - 1) + "," + String(y);
+        }
+        newCell = setIndexIfWithinBounds(newId);
+        if (newCell == null) {
+          // Moving wall one more time will move it outside of the grid
+          return false;
+        }
+        wall.get(direction).forEach((element) => {
+          // Redefine x and y values for each cell in wall
+          x = element.split(",");
+          y = Number(x[1]);
+          x = Number(x[0]);
+
+          // Clear current wall cells
+          document.getElementById(element).className = "tidalPixel";
+
+          // Update positions based on direction
+          if (direction == 0) {
+            y++;
+            newId = String(x) + "," + String(y);
+          } else if (direction == 1) {
+            x++;
+            newId = String(x) + "," + String(y);
+          } else if (direction == 2) {
+            y--;
+            newId = String(x) + "," + String(y);
+          } else {
+            x--;
+            newId = String(x) + "," + String(y);
+          }
+          // Add new wall cells
+          newCells.push(newId);
+          document.getElementById(newId).className = "tidalWall";
+        });
+        wall.set(direction, newCells);
+        // Check if player within new wall position. Should update game state if true.
+        try {
+          wall
+            .get(direction)
+            .includes(document.getElementsByClassName("tidalPlayer")[0].id);
+        } catch (error) {
+          gameEnded = true;
+          return false;
+        }
+        return true;
+      }
 
       /* Spawns a player cell roughly in the center of the grid */
       function spawnPlayer() {
@@ -293,9 +377,32 @@
       }
 
       /* Main gameloop function */
-      function update() {
-        let wall = spawnWall();
-        moveWall(wall);
+      async function update() {
+        if (persistentWall == null) {
+          persistentWall = spawnWall();
+        }
+        let direction = persistentWall.keys().next().value;
+        await sleep(300);
+        let result = moveWall(persistentWall);
+        if (result) {
+          update();
+        } else if (!gameEnded) {
+          // Spawn a new wave and clear previous one
+          clearWall();
+          persistentWall = null;
+          update();
+        }
+      }
+
+      function clearWall() {
+        let currentWall = document.getElementsByClassName("tidalWall");
+        Array.from(currentWall).forEach((element) => {
+          element.className = "tidalPixel";
+        });
+      }
+
+      async function sleep(msec) {
+        return new Promise((resolve) => setTimeout(resolve, msec));
       }
 
       // Start the game
