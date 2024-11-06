@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>MovieDB - runesee</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="navbar" class="themeWhite">
+        <button class="portfolioButton">Portfolio</button>
+        <button disabled="true" class="portfolioButton">/</button>
+        <button disabled="true" class="portfolioButton">MovieDB</button>
+      </div>
+      <div class="projectWrapper">
+        <div id="projectDescription">
+          <h1>MovieDB</h1>
+          <p>
+            The MovieDB Project is an application designed to manage a database
+            of movies and series. We used Maven and JavaFX. The app provides a
+            graphical interface for users to view and interact with a collection
+            of multimedia content. The application is also responsive: you can
+            resize it and it will dynamically change how many movies are shown
+            per row.
+          </p>
+          <h2><b>TL;DR</b></h2>
+          <p class="tldr">
+            <b
+              >A responsive Java movie database using JavaFX and Spring Boot.</b
+            >
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="main view of the application"
+              src="../images/md/example_full.png"
+            />
+          </div>
+          <p class="tldr">
+            The main view of the application, here depicted after clicking on a
+            movie element.
+          </p>
+          <div class="projectBody">
+            <img
+              alt="add movie page"
+              src="../images/md/add.png"
+              style="min-width: 250px"
+            />
+            <div class="projectWrapper projectSecondInfo">
+              <p class="projectParagraphLeft">
+                View for adding movies and series in the application. We
+                implemented extensive testing in the project, including robot
+                tests. Upon building, two robot tests will run through almost
+                all functionality in the application, including adding and
+                deleting movies.
+              </p>
+              <p class="projectParagraphLeft">
+                In the application, there is extensive input validation when
+                adding movies and series. This is covered by the robot tests. We
+                also had a good degree of test coverage using unit tests.
+              </p>
+            </div>
+          </div>
+          <br />
+          <h2>First release</h2>
+          <p>
+            In the initial version, the Moviedb app offered a basic JavaFX
+            interface that allowed users to add, view, and delete movies in a
+            database. Movies were saved locally in a text file, with
+            functionality to read and load saved movies upon startup. This
+            version also included basic input validation to prevent invalid data
+            entries.
+          </p>
+          <h2>Second release</h2>
+          <p>
+            The second release replaced the text file storage with JSON,
+            allowing automatic saving and deletion of movies within the app.
+            This setup removed the need for manual import/export actions and
+            allowed for a more seamless user experience. The project was
+            modularized, and testing coverage expanded to include most core
+            components. We also adopted a systematic workflow using GitLab's
+            issues, milestones and Scrum board.
+          </p>
+          <h2>Final release</h2>
+          <p>
+            In its final form, the app incorporated feedback from earlier
+            versions, enhanced the code with improved practices and warning
+            resolutions, and introduced a REST API. New functionality included
+            support for series alongside movies, with a revamped UI displaying
+            items in a grid format for better organization.
+          </p>
+          <br />
+          <br />
+          <h2>Architecture</h2>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="package diagram"
+              src="../images/md/package-diagram.png"
+            />
+          </div>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="sequence diagram"
+              src="../images/md/sequence-diagram.png"
+            />
+          </div>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="class diagram"
+              src="../images/md/class-diagram.png"
+            />
+          </div>
+          <br />
+          <p class="tldr">
+            View how to build and run the application on GitHub below
+          </p>
+          <div id="githubWrapper">
+            <a href="https://github.com/runesee/moviedb"
+              ><img
+                src="../images/common/github.png"
+                alt="GitHub logo"
+                id="github"
+              />
+              <p>Take me to the repository!</p></a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>@runesee</h3>
+      </div>
+    </div>
+    <script>
+      let bttn = document.getElementsByClassName("portfolioButton")[0];
+      bttn.addEventListener("click", navigate);
+
+      /* Possibly the goofiest way to do page navigation. Because why not. */
+      function navigate() {
+        let currHref = window.location.href;
+        currHref = currHref.replace("projects/moviedb.html", "index.html");
+        window.location.href = currHref;
+      }
+    </script>
+  </body>
+</html>

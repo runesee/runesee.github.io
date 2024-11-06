@@ -262,6 +262,14 @@ html {
   background-color: #5f7481;
 }
 
+#movieWrapper {
+  background-color: #fefbec;
+}
+
+#tidepoolWrapper {
+  background-color: #337aff;
+}
+
 .boxShadow {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
