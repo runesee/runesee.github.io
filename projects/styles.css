@@ -261,6 +261,12 @@ html {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
+#battleshipWrapper {
+  background-color: #add8e6;
+  margin-left: 50px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
 #happyWrapper {
   background-color: #aa8474;
   margin-left: 25px;
@@ -319,6 +325,15 @@ html {
 .themeBlue > button {
   background-color: #2275c3;
   color: #f7fff7;
+}
+
+.themeBrightBlue {
+  background-color: #add8e6;
+}
+
+.themeBrightBlue > button {
+  background-color: #add8e6;
+  color: black;
 }
 
 #github {
