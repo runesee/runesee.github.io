@@ -244,27 +244,35 @@ html {
 }
 #middleKingdomWrapper {
   background-color: #c9af75;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  margin-left: 50px;
 }
 
 #peasantWrapper {
   background-color: #7f9172;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  margin-left: 25px;
-  margin-right: 25px;
 }
 
 #kyllingWrapper {
   background-color: #72a1e5;
-  margin-left: 50px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 #battleshipWrapper {
   background-color: #add8e6;
-  margin-left: 50px;
+}
+
+#csgoWrapper {
+  background-color: #5f7481;
+}
+
+.boxShadow {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.blockViewCenter {
+  margin-left: 50px;
+}
+
+.blockViewLeft {
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
 #happyWrapper {
@@ -334,6 +342,15 @@ html {
 .themeBrightBlue > button {
   background-color: #add8e6;
   color: black;
+}
+
+.themeGray {
+  background-color: #5f7481;
+}
+
+.themeGray > button {
+  background-color: #5f7481;
+  color: #f7fff7;
 }
 
 #github {
