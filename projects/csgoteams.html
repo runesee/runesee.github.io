@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>CSGO Teams - runesee</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="navbar" class="themeGray">
+        <button class="portfolioButton">Portfolio</button>
+        <button disabled="true" class="portfolioButton">/</button>
+        <button disabled="true" class="portfolioButton">CSGO Teams</button>
+      </div>
+      <div class="projectWrapper">
+        <div id="projectDescription">
+          <h1>CSGO Teams</h1>
+          <p>
+            CSGO Teams is a simple website made by me and my group to learn
+            about responsive design and REST-APIs as a part of a university
+            course. The page gathers data of professional players in the video
+            game Counter-Strike: Global Offensive from a community API. For
+            CS:GO players with a keen eye, the data is somewhat outdated.
+          </p>
+          <h2><b>TL;DR</b></h2>
+          <p class="tldr">
+            <b
+              >A simple responsive webpage using local and session storage, and
+              data from an API.</b
+            >
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="webpage with pro csgo players"
+              src="../images/cs/cs1.png"
+            />
+          </div>
+          <p>
+            The user is presented with one resource at a time — one team is
+            shown, and they can navigate to the first, last, next, and previous
+            items using buttons below. The user can sort teams by ranking or
+            alphabetically in both directions.
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="filtered selection only showing favorites"
+              src="../images/cs/cs3.png"
+            />
+          </div>
+          <p>
+            The user can filter teams by players from a selected country,
+            display international or single-nationality teams, and view only
+            favorite teams. These selections are saved in session storage to
+            persist even after reloading the page. The user can mark teams as
+            favorites by clicking a star icon. A context keeps track of
+            favorites, storing the state in local storage so favorites remain
+            even after closing the browser.
+          </p>
+          <div class="projectBody">
+            <img alt="mobile view of the webpage" src="../images/cs/cs2.png" />
+            <div class="projectWrapper projectSecondInfo">
+              <p class="projectParagraphLeft">
+                The website is responsive: on mobile, player layout shifts from
+                horizontal to vertical, and navigation buttons are centered.
+              </p>
+              <p class="projectParagraphLeft">
+                Instructions for how to build and run the webpage can be seen on
+                GitHub below.
+              </p>
+            </div>
+          </div>
+
+          <div id="githubWrapper">
+            <a href="https://github.com/runesee/csgoteams"
+              ><img
+                src="../images/common/github.png"
+                alt="GitHub logo"
+                id="github"
+              />
+              <p>Take me to the repository!</p></a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>@runesee</h3>
+      </div>
+    </div>
+    <script>
+      let bttn = document.getElementsByClassName("portfolioButton")[0];
+      bttn.addEventListener("click", navigate);
+
+      /* Possibly the goofiest way to do page navigation. Because why not. */
+      function navigate() {
+        let currHref = window.location.href;
+        currHref = currHref.replace("projects/csgoteams.html", "index.html");
+        window.location.href = currHref;
+      }
+    </script>
+  </body>
+</html>
