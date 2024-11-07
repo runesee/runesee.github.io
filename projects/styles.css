@@ -412,11 +412,6 @@ html {
   background-color: whitesmoke;
 }
 
-.tidalStar {
-  background-color: gold;
-  animation: twinkle 3s infinite;
-}
-
 .tidalPlayer {
   background-color: orangered;
   border: solid 1 px black;
