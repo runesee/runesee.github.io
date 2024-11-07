@@ -31,15 +31,6 @@ function createGrid() {
   }
 }
 
-/* Deprecated function for spawning a single 'star' pixel randomly */
-function spawnStars() {
-  let totalPixels = GRIDSIZE * GRIDSIZE;
-  let random = Math.floor(Math.random() * totalPixels);
-  let star = tidalpool.children[random];
-  star.id = String(random);
-  star.className = "tidalStar";
-}
-
 /* Function triggered on keyup event. Controls player movement. */
 function movement(e) {
   if (gameEnded || !gameStarted) {
@@ -190,7 +181,7 @@ function enableFastMovement(e) {
   }
 }
 
-/* Returns index if within bounds. Otherwise return null. */
+/* Returns element of index if within bounds. Otherwise returns null. */
 function setIndexIfWithinBounds(index) {
   try {
     return document.getElementById(index);
@@ -202,60 +193,110 @@ function setIndexIfWithinBounds(index) {
 /* Function for spawning a wall in one of four 'cardinal' directions */
 function spawnWall() {
   let direction = Math.floor(Math.random() * 4);
-  let holeCount = Math.floor(Math.random() * 3) + 1;
   let currentWall = new Array();
   let dict = new Map();
 
   if (direction === 0) {
     for (let i = 0; i < GRIDSIZE; i++) {
       currentWall.push(String(i) + ",0");
-      document.getElementById(String(i) + ",0").className = "tidalWall";
     }
-    let holeWall = currentWall.slice();
-    for (let j = 0; j < holeCount; j++) {
-      let holePosition = Math.floor(Math.random() * 30);
-      holeWall.splice(String(j) + ",0", 1);
-      document.getElementById(String(j) + ",0").className = "tidalPixel";
-    }
-    dict.set(direction, holeWall);
   } else if (direction === 1) {
     for (let i = 0; i < GRIDSIZE; i++) {
       currentWall.push("0," + String(i));
-      document.getElementById("0," + String(i)).className = "tidalWall";
     }
-    let holeWall = currentWall.slice();
-    for (let j = 0; j < holeCount; j++) {
-      let holePosition = Math.floor(Math.random() * 30);
-      holeWall.splice("0," + String(j), 1);
-      document.getElementById("0," + String(j)).className = "tidalPixel";
-    }
-    dict.set(direction, holeWall);
   } else if (direction === 2) {
     for (let i = 0; i < GRIDSIZE; i++) {
       currentWall.push(String(i) + ",29");
-      document.getElementById(String(i) + ",29").className = "tidalWall";
     }
-    let holeWall = currentWall.slice();
-    for (let j = 0; j < holeCount; j++) {
-      let holePosition = Math.floor(Math.random() * 30);
-      holeWall.splice(String(j) + ",29", 1);
-      document.getElementById(String(j) + ",29").className = "tidalPixel";
-    }
-    dict.set(direction, holeWall);
   } else {
     for (let i = 0; i < GRIDSIZE; i++) {
       currentWall.push("29," + String(i));
-      document.getElementById("29," + String(i)).className = "tidalWall";
     }
-    let holeWall = currentWall.slice();
-    for (let j = 0; j < holeCount; j++) {
-      let holePosition = Math.floor(Math.random() * 30);
-      holeWall.splice("29," + String(j), 1);
-      document.getElementById("29," + String(j)).className = "tidalPixel";
-    }
-    dict.set(direction, holeWall);
   }
+  let porousWall = generateHoles(direction, currentWall);
+  porousWall.forEach((element) => {
+    document.getElementById(element).className = "tidalWall";
+  });
+  dict.set(direction, porousWall);
   return dict;
+}
+
+/* Helper function for generating holes in the spawned wall */
+function generateHoles(direction, currentWall) {
+  let porousWall = currentWall.slice();
+
+  // Generate a hole in the wall at a random position
+  let holePosition = Math.floor(Math.random() * porousWall.length);
+
+  // Select a size of the hole
+  let holeSize = Math.floor(Math.random() * 5) + 1;
+
+  let adjacentHoles = locateAdjacentHoles(holePosition, direction, holeSize);
+  adjacentHoles.forEach((element) => {
+    porousWall.splice(porousWall.indexOf(element), 1);
+  });
+  return porousWall;
+}
+/* Helper function for getting a new index based on step-sized changes */
+function newIndex(index, direction, step) {
+  let i = index.split(",");
+  let j = parseInt(i[1]);
+  i = parseInt(i[0]);
+
+  if (direction == 0) {
+    i += step;
+  } else if (direction == 1) {
+    j += step;
+  } else if (direction == 2) {
+    i -= step;
+  } else {
+    j -= step;
+  }
+  return String(i) + "," + String(j);
+}
+
+/* Helper function for joining starting index with direction */
+function cartesianIndex(i, direction) {
+  if (direction == 0) {
+    return String(i) + ",0";
+  } else if (direction == 1) {
+    return "0," + String(i);
+  } else if (direction == 2) {
+    return String(i) + ",29";
+  }
+  return "29," + String(i);
+}
+
+/* Helper function for locating nearest a holes adjacent indexes that are within bounds */
+function locateAdjacentHoles(position, direction, size) {
+  let indexes = [];
+  position = cartesianIndex(position, direction);
+  indexes.push(position);
+
+  // Set planned hole indexes
+  if (size >= 2) {
+    indexes.push(newIndex(position, direction, 1));
+  }
+  if (size >= 3) {
+    indexes.push(newIndex(position, direction, -1));
+  }
+  if (size >= 4) {
+    indexes.push(newIndex(position, direction, 2));
+  }
+  if (size == 5) {
+    indexes.push(newIndex(position, direction, -2));
+  }
+
+  // Add only indexes within bounds to list
+  let legalIndexes = [];
+  indexes.forEach((element) => {
+    let k = setIndexIfWithinBounds(element);
+    if (k != null) {
+      legalIndexes.push(k.id);
+      k.className = "tidalPixel";
+    }
+  });
+  return legalIndexes;
 }
 
 function moveWall(wall) {
@@ -357,7 +398,7 @@ async function update() {
   }
   if (persistentWall == null) {
     persistentWall = spawnWall();
-    tickSpeed = tickSpeed > 50 ? tickSpeed - 20 : tickSpeed;
+    tickSpeed = tickSpeed > 120 ? tickSpeed - 40 : tickSpeed;
   }
   let direction = persistentWall.keys().next().value;
   await sleep(tickSpeed);
