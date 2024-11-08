@@ -31,7 +31,7 @@ function createGrid() {
   }
 }
 
-/* Function triggered on keyup event. Controls player movement. */
+/* Function triggered on keydown event. Controls player movement. */
 function movement(e) {
   if (gameEnded || !gameStarted) {
     return;
@@ -41,7 +41,7 @@ function movement(e) {
     return;
   }
   if (fastMovement) {
-    moveSteps(5, e.code);
+    moveSteps(3, e.code);
   } else {
     moveSteps(1, e.code);
   }
@@ -171,13 +171,23 @@ function wallBlockingPath(i, j, index, keycode) {
   return endpoint.id;
 }
 
-/* Toggle 5x movement if left control is pressed */
+/* Enable faster movement if left control is pressed. */
 function enableFastMovement(e) {
   if (gameEnded || !gameStarted) {
     return;
   }
   if (e.code === "ControlLeft") {
     fastMovement = true;
+  }
+}
+
+/* Disables faster movement if left control is pressed. */
+function disableFastMovement(e) {
+  if (gameEnded || !gameStarted) {
+    return;
+  }
+  if (e.code === "ControlLeft") {
+    fastMovement = false;
   }
 }
 
@@ -446,8 +456,9 @@ function gameOver() {
 }
 
 // Add event listeners
-window.addEventListener("keyup", movement);
+window.addEventListener("keydown", movement);
 window.addEventListener("keydown", enableFastMovement);
+window.addEventListener("keyup", disableFastMovement);
 
 /* Possibly the goofiest way to do page navigation. Because why not. */
 function navigate() {
