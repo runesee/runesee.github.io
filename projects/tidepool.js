@@ -201,8 +201,7 @@ function setIndexIfWithinBounds(index) {
 }
 
 /* Function for spawning a wall in one of four 'cardinal' directions */
-function spawnWall() {
-  let direction = Math.floor(Math.random() * 4);
+function spawnWall(direction) {
   let currentWall = new Array();
   let dict = new Map();
 
@@ -229,6 +228,49 @@ function spawnWall() {
   });
   dict.set(direction, porousWall);
   return dict;
+}
+
+/* Function for respawning a wall */
+async function alertWall() {
+  let direction = Math.floor(Math.random() * 4);
+  let currentWall = new Array();
+
+  if (direction === 0) {
+    for (let i = 0; i < GRIDSIZE; i++) {
+      currentWall.push(String(i) + ",0");
+    }
+  } else if (direction === 1) {
+    for (let i = 0; i < GRIDSIZE; i++) {
+      currentWall.push("0," + String(i));
+    }
+  } else if (direction === 2) {
+    for (let i = 0; i < GRIDSIZE; i++) {
+      currentWall.push(String(i) + ",29");
+    }
+  } else {
+    for (let i = 0; i < GRIDSIZE; i++) {
+      currentWall.push("29," + String(i));
+    }
+  }
+
+  // Spawn and unspawn the wall twice
+  currentWall.forEach((element) => {
+    document.getElementById(element).className = "tidalWall";
+  });
+  await sleep(tickSpeed);
+  currentWall.forEach((element) => {
+    document.getElementById(element).className = "tidalPixel";
+  });
+  await sleep(tickSpeed);
+  currentWall.forEach((element) => {
+    document.getElementById(element).className = "tidalWall";
+  });
+  await sleep(tickSpeed);
+  currentWall.forEach((element) => {
+    document.getElementById(element).className = "tidalPixel";
+  });
+  await sleep(tickSpeed);
+  return direction;
 }
 
 /* Helper function for generating holes in the spawned wall */
@@ -407,10 +449,11 @@ async function update() {
     return;
   }
   if (persistentWall == null) {
-    persistentWall = spawnWall();
-    tickSpeed = tickSpeed > 120 ? tickSpeed - 40 : tickSpeed;
+    // Alert where wall will spawn, and spawn it after 3 x tickSpeed ms
+    direction = await alertWall(tickSpeed);
+    persistentWall = spawnWall(direction);
+    tickSpeed = tickSpeed > 80 ? tickSpeed - 30 : tickSpeed;
   }
-  let direction = persistentWall.keys().next().value;
   await sleep(tickSpeed);
   score += 1;
   let result = moveWall(persistentWall);
