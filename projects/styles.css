@@ -8,6 +8,7 @@ body {
 html {
   padding: 0;
   background-color: #f7fff7;
+  transition: 0.5s;
 }
 
 #wrapper {
@@ -47,6 +48,7 @@ html {
   z-index: 2;
   top: 0;
   border-bottom: solid 2px #343434;
+  transition: 0.5s;
 }
 
 .faded {
@@ -210,6 +212,7 @@ html {
   border: 0;
   padding: 10px;
   font-size: large;
+  transition: 0.5s;
 }
 
 .portfolioButton:hover {

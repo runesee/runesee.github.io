@@ -266,7 +266,29 @@
       );
       projectElements.forEach((e) => {
         observer.observe(e);
+        e.addEventListener("mouseenter", () => {
+          setBackgroundColor(e);
+        });
+        e.addEventListener("mouseleave", resetBackgroundColor);
       });
+
+      function resetBackgroundColor() {
+        document.getElementsByTagName("html")[0].style.backgroundColor =
+          "#f7fff7";
+        document.getElementById("navbar").style.backgroundColor = "#f7fff7";
+        document.getElementsByClassName(
+          "portfolioButton"
+        )[0].style.backgroundColor = "#f7fff7";
+      }
+
+      function setBackgroundColor(projectElement) {
+        let color = window.getComputedStyle(projectElement).backgroundColor;
+        document.getElementsByTagName("html")[0].style.backgroundColor = color;
+        document.getElementById("navbar").style.backgroundColor = color;
+        document.getElementsByClassName(
+          "portfolioButton"
+        )[0].style.backgroundColor = color;
+      }
     </script>
   </body>
 </html>
