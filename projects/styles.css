@@ -133,10 +133,6 @@ html {
   transform: translateX(0);
 }
 
-.description > h3 {
-  margin-left: 30px;
-}
-
 .description > p {
   margin-left: 30px;
   margin-right: 30px;
@@ -392,6 +388,18 @@ html {
   display: flex;
   flex-direction: column;
   max-width: 975px;
+}
+
+.projectHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  justify-content: space-between;
+  margin-left: 30px;
+}
+
+.skillIcons {
+  max-height: 50px;
 }
 
 .tldr {
