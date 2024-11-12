@@ -390,6 +390,10 @@ html {
   max-width: 975px;
 }
 
+.description > h3 {
+  margin-left: 30px;
+}
+
 .projectHeaderContainer {
   display: flex;
   flex-direction: row;
