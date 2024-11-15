@@ -273,11 +273,15 @@ html {
 }
 
 #movieWrapper {
-  background-color: #fefbec;
+  background-color: #eeeeee;
 }
 
 #tidepoolWrapper {
   background-color: #337aff;
+}
+
+#pongWrapper {
+  background-color: #ffffff;
 }
 
 .boxShadow {
