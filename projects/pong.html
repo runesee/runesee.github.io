@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Pong - runesee</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="navbar" class="themeWhite">
+        <button class="portfolioButton">Portfolio</button>
+        <button disabled="true" class="portfolioButton">/</button>
+        <button disabled="true" class="portfolioButton">Pong</button>
+      </div>
+      <div class="projectWrapper">
+        <div id="projectDescription">
+          <h1>Pong</h1>
+          <p>
+            This project was a part of the same architecture course as the
+            Peasant Rebellion project. The goal of the project was to make us
+            accustomed to Android Studio, LibGDX, and the Android activity
+            lifecycle before we started the main project. Even though I knew my
+            group would use Kotlin for the main project, I chose to stick with
+            Java for this exercise. Moving on from Java to Kotlin later on was
+            pretty straightforward, thankfully.
+          </p>
+          <h2><b>TL;DR</b></h2>
+          <p class="tldr">
+            <b> The game Pong written in Java using Android Studio. </b>
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="image of the game in progress"
+              src="../images/po/game.png"
+            />
+          </div>
+          <br />
+          <p>
+            The user can move the paddle on the left up and down using their
+            mouse. The player plays against the computer, which controls the
+            right paddle. The right paddle simply moves towards the puck at a
+            set speed. First to 21 points wins. The puck is spawned with a
+            random direction (it is made sure the angle is not too steep). The
+            puck speed is also increased for each time the players hit the puck
+            three times in a row, up to a maximum speed. The amount of
+            consecutive hits is represented by the number in the top center of
+            the screen.
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="image of the game end screen"
+              src="../images/po/end.png"
+            />
+          </div>
+          <p class="tldr">
+            End screen after the player has won. The player's score is visible
+            on the top left, the computer's on the top right
+          </p>
+          <br />
+          <p class="tldr">The project can be viewed on GitHub below.</p>
+          <div id="githubWrapper">
+            <a href="https://github.com/runesee/pong"
+              ><img
+                src="../images/common/github.png"
+                alt="GitHub logo"
+                id="github"
+              />
+              <p>Take me to the repository!</p></a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>@runesee</h3>
+      </div>
+    </div>
+    <script>
+      let bttn = document.getElementsByClassName("portfolioButton")[0];
+      bttn.addEventListener("click", navigate);
+
+      /* Possibly the goofiest way to do page navigation. Because why not. */
+      function navigate() {
+        let currHref = window.location.href;
+        currHref = currHref.replace("projects/pong.html", "index.html");
+        window.location.href = currHref;
+      }
+    </script>
+  </body>
+</html>
