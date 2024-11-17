@@ -1,5 +1,6 @@
 var board = document.getElementById("pongBoard");
-
+var puckVector;
+var puckCounter;
 let bttn = document.getElementsByClassName("portfolioButton")[0];
 bttn.addEventListener("click", navigate);
 
@@ -16,10 +17,7 @@ class Vector extends Array {
   }
 }
 
-populateBoard();
-spawnPaddles();
-spawnPuck();
-console.log(generateVector());
+start();
 
 function populateBoard() {
   for (let i = 0; i < 21; i++) {
@@ -33,7 +31,7 @@ function populateBoard() {
 }
 
 function generateVector() {
-  return new Vector(1, 2, 3);
+  return new Vector(-1, 2);
 }
 
 function resetBoard() {
@@ -52,4 +50,36 @@ function spawnPaddles() {
 function spawnPuck() {
   let puck = document.getElementById("10,15");
   puck.className = "pongPixel pongPuck";
+}
+
+function movePuck() {
+  let puck = document.getElementsByClassName("pongPuck")[0];
+  let x = puck.id.split(",");
+  let y = Number(x[1]);
+  x = Number(x[0]);
+  puckCounter++;
+  x += puckVector[0];
+  y += puckVector[1];
+  let newPuck = document.getElementById(String(x) + "," + String(y));
+  puck.className = "pongPixel";
+  newPuck.className = "pongPixel pongPuck";
+}
+
+function start() {
+  populateBoard();
+  spawnPaddles();
+  spawnPuck();
+  puckVector = generateVector();
+  puckCounter = 0;
+  //update();
+}
+
+async function update() {
+  await sleep(200);
+  movePuck();
+  update();
+}
+
+async function sleep(msec) {
+  return new Promise((resolve) => setTimeout(resolve, msec));
 }
