@@ -478,6 +478,29 @@ html {
   cursor: pointer;
 }
 
+#pongBoard {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+  height: 400px;
+  width: 600px;
+  gap: 0;
+  background-color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pongPixel {
+  background-color: black;
+}
+
+.pongPaddle {
+  background-color: white;
+}
+
+.pongPuck {
+  background-color: white;
+}
+
 @media screen and (max-width: 1500px) {
   .projectBody {
     flex-direction: column;
