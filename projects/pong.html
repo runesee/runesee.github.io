@@ -58,6 +58,9 @@
             on the top left, the computer's on the top right
           </p>
           <br />
+
+          <div id="pongBoard"></div>
+
           <p class="tldr">The project can be viewed on GitHub below.</p>
           <div id="githubWrapper">
             <a href="https://github.com/runesee/pong"
@@ -75,16 +78,6 @@
         <h3>@runesee</h3>
       </div>
     </div>
-    <script>
-      let bttn = document.getElementsByClassName("portfolioButton")[0];
-      bttn.addEventListener("click", navigate);
-
-      /* Possibly the goofiest way to do page navigation. Because why not. */
-      function navigate() {
-        let currHref = window.location.href;
-        currHref = currHref.replace("projects/pong.html", "index.html");
-        window.location.href = currHref;
-      }
-    </script>
+    <script src="pong.js"></script>
   </body>
 </html>
