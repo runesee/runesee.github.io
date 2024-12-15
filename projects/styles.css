@@ -100,6 +100,7 @@ html {
   align-items: center;
   margin-top: 20px;
   max-width: 975px;
+  min-height: 200px;
 }
 
 .projectElement > a > img {
