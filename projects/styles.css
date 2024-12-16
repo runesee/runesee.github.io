@@ -200,6 +200,10 @@ html {
   text-align: center;
 }
 
+.videoWrapper > video {
+  width: 80%;
+}
+
 .projectIntroImg {
   max-width: 80%;
   min-width: 400px;
@@ -253,6 +257,11 @@ html {
 .projectParagraphLeft {
   padding-left: 5%;
 }
+
+#npcaiWrapper {
+  background-color: #92b8c9;
+}
+
 #middleKingdomWrapper {
   background-color: #c9af75;
 }
@@ -373,6 +382,15 @@ html {
 
 .themeGray > button {
   background-color: #5f7481;
+  color: #f7fff7;
+}
+
+.themeCyan {
+  background-color: #92b8c9;
+}
+
+.themeCyan > button {
+  background-color: #92b8c9;
   color: #f7fff7;
 }
 

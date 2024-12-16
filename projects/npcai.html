@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>NPC AI - runesee</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="navbar" class="themeCyan">
+        <button class="portfolioButton">Portfolio</button>
+        <button disabled="true" class="portfolioButton">/</button>
+        <button disabled="true" class="portfolioButton">NPC AI</button>
+      </div>
+      <div class="projectWrapper">
+        <div id="projectDescription">
+          <h1>NPC AI</h1>
+          <p>
+            VR4VET or "Virtual Reality for Career Guidance and Vocational
+            Education and Training" is an open-source project funded by the EU
+            under the Erasmus+ program, that aims to apply Virtual Reality for
+            vocational education and career guidance. I had the pleasure of
+            working with IMTEL on the VR4VET project as a part of NTNU's
+            customer driven project course, along with five other students, in
+            the fall of 2024. Our task was improving the existing Non-Player
+            Character (NPC) using artificial intelligence.
+          </p>
+          <p>
+            NPC AI is a newer version of the existing NPC prefab that adds the
+            ability for users to converse with the character in game. The
+            default behaviour of NPC conversations is a scripted, pre-written
+            dialogue the user has to click through. The text in this dialogue is
+            read aloud by the NPC, but the user is unable to ask the NPC to
+            repeat itself or discuss the themes of the dialogue. The NPC AI
+            prefab makes the scripted dialogues dymanic by allowing users to
+            converse with the NPC at any point in a scripted dialogue, and then
+            continue the scripted dialogue once they are satisfied. The user's
+            input is transcribed locally and processed by OpenAI's GPT Mini 4.0.
+            A global and NPC-specific context prompt can be defined to make sure
+            they behave in line with what is expected from a character in a VR
+            application. Importantly, user speech is not sent to any API, as the
+            transcription happens locally. Additonally, each individual NPC AI
+            in the scene will remember what it and the user have said to each
+            other.
+          </p>
+          <h2><b>TL;DR</b></h2>
+          <p class="tldr">
+            <b>
+              A Non-Player Character (NPC) that uses artificial intelligence to
+              enable conversations with end users inside of a virtual reality
+              (VR) application. Developed in Unity using C#.</b
+            >
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="image of the improved NPC"
+              src="../images/na/mrai.png"
+            />
+          </div>
+          <br />
+          <p>
+            Conversations can be enabled by the developers on set elements in
+            the dialogue tree. If the prompt contains details of the user's
+            environment, users can be guided through tasks in the scene.
+            Depicted above, a user is currently talking to the NPC.
+            Transcription of user speech is being done, while the NPC displays a
+            listening animation. Once the user is done talking, the transcript
+            will be shown as subtitles, and a reply will be generated using the
+            LLM. Finally, the LLM's reply will be read aloud by the NPC.
+          </p>
+          <div class="videoWrapper">
+            <video controls>
+              <source
+                src="../images/na/kundestyrt_video_1.mp4"
+                type="video/mp4"
+              />
+              Video not supported by your browser.
+            </video>
+          </div>
+          <p>
+            In the video above, you can see a short demonstration of a user (me)
+            speaking with the NPC AI in English. Norwegian, Dutch and German is
+            currently also supported, with the option for adding more languages
+            down the line.
+          </p>
+          <br />
+
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="Deployment diagram"
+              src="../images/na/deployment.png"
+            />
+          </div>
+          <p>
+            Depicted above is a deployment diagram showcasing the two OpenAI
+            APIs we utilized, as well as the Whisper transcription process we
+            implemented locally. Optionally, Meta's Wit.ai TTS service can also
+            be used instead of OpenAI. OpenAI generally produces audio of a
+            higher quality, but unlike Wit.ai it is not free.
+          </p>
+
+          <p class="tldr">
+            More information can be found by visiting the links below.
+          </p>
+          <div id="githubWrapper">
+            <a href="https://github.com/vr4vet/vr4vet/wiki/NPC-AI"
+              ><img
+                src="../images/common/github.png"
+                alt="GitHub logo"
+                id="github"
+              />
+              <p>Take me to the Wiki page!</p></a
+            >
+            <a href="https://github.com/vr4vet/vr4vet/releases/tag/npcai-v1.0">
+              <p>Take me to the release!</p></a
+            >
+            <a href="https://github.com/vr4vet/vr4vet/tree/NPCAI">
+              <p>Take me to the code!</p></a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>@runesee</h3>
+      </div>
+    </div>
+    <script>
+      let bttn = document.getElementsByClassName("portfolioButton")[0];
+      bttn.addEventListener("click", navigate);
+
+      /* Possibly the goofiest way to do page navigation. Because why not. */
+      function navigate() {
+        let currHref = window.location.href;
+        currHref = currHref.replace("projects/npcai.html", "index.html");
+        window.location.href = currHref;
+      }
+    </script>
+  </body>
+</html>
