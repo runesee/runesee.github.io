@@ -24,14 +24,16 @@ function populateBoard() {
     for (let j = 0; j < 31; j++) {
       let pongPixel = document.createElement("div");
       pongPixel.className = "pongPixel";
-      pongPixel.id = String(i) + "," + String(j);
+      pongPixel.id = String(j) + "," + String(i);
       board.appendChild(pongPixel);
     }
   }
 }
 
 function generateVector() {
-  return new Vector(-1, 2);
+  let rX = Math.floor(Math.random() * 3) + 1;
+  let rY = Math.floor(Math.random() * 3) + 1;
+  return new Vector(rX, rY);
 }
 
 function resetBoard() {
@@ -40,15 +42,15 @@ function resetBoard() {
 
 function spawnPaddles() {
   for (let i = 8; i < 13; i++) {
-    let paddleIndex1 = document.getElementById(String(i) + ",1");
-    let paddleIndex2 = document.getElementById(String(i) + ",29");
+    let paddleIndex1 = document.getElementById("1," + String(i));
+    let paddleIndex2 = document.getElementById("29," + String(i));
     paddleIndex1.className = "pongPixel pongPaddle leftPaddle";
     paddleIndex2.className = "pongPixel pongPaddle rightPaddle";
   }
 }
 
 function spawnPuck() {
-  let puck = document.getElementById("10,15");
+  let puck = document.getElementById("15,10");
   puck.className = "pongPixel pongPuck";
 }
 
@@ -58,9 +60,20 @@ function movePuck() {
   let y = Number(x[1]);
   x = Number(x[0]);
   puckCounter++;
-  x += puckVector[0];
-  y += puckVector[1];
-  let newPuck = document.getElementById(String(x) + "," + String(y));
+  newX = x + puckVector[0];
+  newY = y + puckVector[1];
+  let newPuck = puck;
+
+  if (newX > 30 || newX < 0) {
+    puckVector = new Vector(puckVector[0] * -1, puckVector[1]);
+    movePuck();
+    return;
+  } else if (newY > 20 || newY < 0) {
+    puckVector = new Vector(puckVector[0], puckVector[1] * -1);
+    movePuck();
+    return;
+  }
+  newPuck = document.getElementById(String(newX) + "," + String(newY));
   puck.className = "pongPixel";
   newPuck.className = "pongPixel pongPuck";
 }
