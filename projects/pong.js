@@ -32,8 +32,8 @@ function populateBoard() {
 }
 
 function generateVector() {
-  let rX = Math.floor(Math.random() * 3) + 1;
-  let rY = Math.floor(Math.random() * 3) + 1;
+  let rX = Math.floor(Math.random() * 6) - 3;
+  let rY = Math.floor(Math.random() * 6) - 3;
   return new Vector(rX, rY);
 }
 
@@ -76,66 +76,88 @@ function movePuck() {
     movePuck();
     return;
   }
-
   newPuck = document.getElementById(String(newX) + "," + String(newY));
   puck.className = "pongPixel";
   newPuck.className = "pongPixel pongPuck";
 }
 
-function movePaddle(event) {
-  let key = event.key;
-
+function movePaddle(key, paddle) {
   if (key == "w") {
-    let firstElement = userPaddle[0];
+    let firstElement = paddle[0];
     let y = Number(firstElement.id.split(",")[1]);
     if (y == 0) {
-      return;
+      return null;
     }
 
-    document.getElementById(userPaddle[userPaddle.length - 1].id).className =
+    document.getElementById(paddle[paddle.length - 1].id).className =
       "pongPixel";
-    userPaddle.splice(userPaddle.length - 1, 1);
+    paddle.splice(paddle.length - 1, 1);
 
     let a = [];
-    let x = firstElement.id.split(",");
-    y = Number(x[1]);
-    x = Number(x[0]);
+    let x = firstElement.id.split(",")[0];
     a[0] = document.getElementById(String(x) + "," + String(y - 1));
-    a[0].className = "pongPixel pongPaddle leftPaddle";
+    a[0].className = "pongPixel pongPaddle";
 
-    userPaddle.forEach((element) => {
+    paddle.forEach((element) => {
       a.push(element);
     });
-    userPaddle = a;
+
+    paddle = a;
+    return paddle;
   } else if (key == "s") {
-    let lastElement = userPaddle[userPaddle.length - 1];
+    let lastElement = paddle[paddle.length - 1];
     let y = Number(lastElement.id.split(",")[1]);
     if (y == 20) {
-      return;
+      return null;
     }
 
-    document.getElementById(userPaddle[0].id).className = "pongPixel";
-    userPaddle.splice(0, 1);
+    document.getElementById(paddle[0].id).className = "pongPixel";
+    paddle.splice(0, 1);
 
     let a = [];
     let x = lastElement.id.split(",");
     y = Number(x[1]);
     x = Number(x[0]);
 
-    userPaddle.forEach((element) => {
+    paddle.forEach((element) => {
       a.push(element);
     });
     a[a.length] = document.getElementById(String(x) + "," + String(y + 1));
-    a[a.length - 1].className = "pongPixel pongPaddle leftPaddle";
+    a[a.length - 1].className = "pongPixel pongPaddle";
+    paddle = a;
+    return paddle;
+  }
+}
 
-    userPaddle = a;
+function moveLeftPaddle(event) {
+  let key = event.key;
+  let newPaddle = movePaddle(key, userPaddle);
+  if (newPaddle != null) {
+    userPaddle = newPaddle;
+  }
+}
+
+function moveRightPaddle() {
+  let x = document.getElementsByClassName("pongPuck")[0].id.split(",");
+  let y = Number(x[1]);
+  let middle = computerPaddle[2].id.split(",")[1];
+  if (middle > y) {
+    let newPaddle = movePaddle("w", computerPaddle);
+    if (newPaddle != null) {
+      computerPaddle = newPaddle;
+    }
+  } else if (middle < y) {
+    let newPaddle = movePaddle("s", computerPaddle);
+    if (newPaddle != null) {
+      computerPaddle = newPaddle;
+    }
   }
 }
 
 function start() {
   document
     .getElementsByTagName("body")[0]
-    .addEventListener("keydown", movePaddle);
+    .addEventListener("keydown", moveLeftPaddle);
   populateBoard();
   spawnPaddles();
   spawnPuck();
@@ -147,6 +169,7 @@ function start() {
 async function update() {
   await sleep(200);
   movePuck();
+  moveRightPaddle();
   update();
 }
 
