@@ -1,10 +1,11 @@
 var board = document.getElementById("pongBoard");
 var puckVector;
 var puckCounter;
+var userPaddle = [];
+var computerPaddle = [];
 let bttn = document.getElementsByClassName("portfolioButton")[0];
 bttn.addEventListener("click", navigate);
 
-/* Possibly the goofiest way to do page navigation. Because why not. */
 function navigate() {
   let currHref = window.location.href;
   currHref = currHref.replace("projects/pong.html", "index.html");
@@ -45,7 +46,9 @@ function spawnPaddles() {
     let paddleIndex1 = document.getElementById("1," + String(i));
     let paddleIndex2 = document.getElementById("29," + String(i));
     paddleIndex1.className = "pongPixel pongPaddle leftPaddle";
+    userPaddle[i - 8] = paddleIndex1;
     paddleIndex2.className = "pongPixel pongPaddle rightPaddle";
+    computerPaddle[i - 8] = paddleIndex2;
   }
 }
 
@@ -73,12 +76,66 @@ function movePuck() {
     movePuck();
     return;
   }
+
   newPuck = document.getElementById(String(newX) + "," + String(newY));
   puck.className = "pongPixel";
   newPuck.className = "pongPixel pongPuck";
 }
 
+function movePaddle(event) {
+  let key = event.key;
+
+  if (key == "w") {
+    let firstElement = userPaddle[0];
+    let y = Number(firstElement.id.split(",")[1]);
+    if (y == 0) {
+      return;
+    }
+
+    document.getElementById(userPaddle[userPaddle.length - 1].id).className =
+      "pongPixel";
+    userPaddle.splice(userPaddle.length - 1, 1);
+
+    let a = [];
+    let x = firstElement.id.split(",");
+    y = Number(x[1]);
+    x = Number(x[0]);
+    a[0] = document.getElementById(String(x) + "," + String(y - 1));
+    a[0].className = "pongPixel pongPaddle leftPaddle";
+
+    userPaddle.forEach((element) => {
+      a.push(element);
+    });
+    userPaddle = a;
+  } else if (key == "s") {
+    let lastElement = userPaddle[userPaddle.length - 1];
+    let y = Number(lastElement.id.split(",")[1]);
+    if (y == 20) {
+      return;
+    }
+
+    document.getElementById(userPaddle[0].id).className = "pongPixel";
+    userPaddle.splice(0, 1);
+
+    let a = [];
+    let x = lastElement.id.split(",");
+    y = Number(x[1]);
+    x = Number(x[0]);
+
+    userPaddle.forEach((element) => {
+      a.push(element);
+    });
+    a[a.length] = document.getElementById(String(x) + "," + String(y + 1));
+    a[a.length - 1].className = "pongPixel pongPaddle leftPaddle";
+
+    userPaddle = a;
+  }
+}
+
 function start() {
+  document
+    .getElementsByTagName("body")[0]
+    .addEventListener("keydown", movePaddle);
   populateBoard();
   spawnPaddles();
   spawnPuck();
