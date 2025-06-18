@@ -32,8 +32,9 @@ function populateBoard() {
 }
 
 function generateVector() {
-  let rX = Math.floor(Math.random() * 6) - 3;
-  let rY = Math.floor(Math.random() * 6) - 3;
+  // TODO: Avoid 0 vectors
+  let rX = Math.floor(Math.random() * 4) - 2;
+  let rY = Math.floor(Math.random() * 4) - 2;
   return new Vector(rX, rY);
 }
 
@@ -163,14 +164,14 @@ function start() {
   spawnPuck();
   puckVector = generateVector();
   puckCounter = 0;
-  //update();
+  update();
 }
 
 async function update() {
   await sleep(200);
   movePuck();
   moveRightPaddle();
-  update();
+  //update();
 }
 
 async function sleep(msec) {
