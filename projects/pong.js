@@ -239,7 +239,7 @@ async function update() {
   if (gameOver) {
     return;
   }
-  await sleep(200);
+  await sleep(400);
   movePuck();
   moveRightPaddle();
   update();
