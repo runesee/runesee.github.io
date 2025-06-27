@@ -1,3 +1,5 @@
+var gameOver = false;
+var gameStarted = false;
 var board = document.getElementById("pongBoard");
 var puckVector;
 var puckCounter;
@@ -32,9 +34,17 @@ function populateBoard() {
 }
 
 function generateVector() {
-  // TODO: Avoid 0 vectors
-  let rX = Math.floor(Math.random() * 4) - 2;
-  let rY = Math.floor(Math.random() * 4) - 2;
+  let rX = Math.floor(Math.random()) + 1;
+  let rY = Math.floor(Math.random()) + 1;
+
+  let direction = Math.floor(Math.random() * 2);
+  if (direction === 0) {
+    rX *= -1;
+  }
+  direction = Math.floor(Math.random() * 2);
+  if (direction === 0) {
+    rY *= -1;
+  }
   return new Vector(rX, rY);
 }
 
@@ -69,13 +79,43 @@ function movePuck() {
   let newPuck = puck;
 
   if (newX > 30 || newX < 0) {
-    puckVector = new Vector(puckVector[0] * -1, puckVector[1]);
-    movePuck();
+    gameOver = true;
     return;
   } else if (newY > 20 || newY < 0) {
     puckVector = new Vector(puckVector[0], puckVector[1] * -1);
     movePuck();
     return;
+  }
+
+  if (newX === 1 || newX === 29) {
+    // Within userpaddle column
+    let firstUserpaddleElement = userPaddle[0];
+    let lastUserpaddleElement = userPaddle[4];
+    let firstUserpaddleY = Number(firstUserpaddleElement.id.split(",")[1]);
+    let lastUserpaddleY = Number(lastUserpaddleElement.id.split(",")[1]);
+
+    let firstComputerpaddleElement = computerPaddle[0];
+    let lastComputerpaddleElement = computerPaddle[4];
+    let firstComputerpaddleY = Number(
+      firstComputerpaddleElement.id.split(",")[1]
+    );
+    let lastComputerpaddleY = Number(
+      lastComputerpaddleElement.id.split(",")[1]
+    );
+
+    if (newX === 1) {
+      if (newY >= firstUserpaddleY && newY <= lastUserpaddleY) {
+        puckVector = new Vector(puckVector[0] * -1, puckVector[1]);
+        movePuck();
+        return;
+      }
+    } else if (newX === 29) {
+      if (newY >= firstComputerpaddleY && newY <= lastComputerpaddleY) {
+        puckVector = new Vector(puckVector[0] * -1, puckVector[1]);
+        movePuck();
+        return;
+      }
+    }
   }
   newPuck = document.getElementById(String(newX) + "," + String(newY));
   puck.className = "pongPixel";
@@ -85,8 +125,21 @@ function movePuck() {
 function movePaddle(key, paddle) {
   if (key == "w") {
     let firstElement = paddle[0];
-    let y = Number(firstElement.id.split(",")[1]);
-    if (y == 0) {
+    let firstY = Number(firstElement.id.split(",")[1]);
+
+    // Prevent moving up if roof reached
+    if (firstY === 0) {
+      return null;
+    }
+
+    let pongY = Number(
+      document.getElementsByClassName("pongPuck")[0].id.split(",")[1]
+    );
+    console.log("pongY: " + pongY);
+    console.log("paddleY: " + firstY);
+
+    if (pongY + 1 === firstY) {
+      // If puck is already occupying the space, disallow moving into the square
       return null;
     }
 
@@ -96,7 +149,7 @@ function movePaddle(key, paddle) {
 
     let a = [];
     let x = firstElement.id.split(",")[0];
-    a[0] = document.getElementById(String(x) + "," + String(y - 1));
+    a[0] = document.getElementById(String(x) + "," + String(firstY - 1));
     a[0].className = "pongPixel pongPaddle";
 
     paddle.forEach((element) => {
@@ -107,8 +160,19 @@ function movePaddle(key, paddle) {
     return paddle;
   } else if (key == "s") {
     let lastElement = paddle[paddle.length - 1];
-    let y = Number(lastElement.id.split(",")[1]);
-    if (y == 20) {
+    let lastY = Number(lastElement.id.split(",")[1]);
+
+    // Prevent moving down if floor reached
+    if (lastY == 20) {
+      return null;
+    }
+
+    let pongY = Number(
+      document.getElementsByClassName("pongPuck")[0].id.split(",")[1]
+    );
+
+    if (pongY - 1 === lastY) {
+      // If puck is already occupying the space, disallow moving into the square
       return null;
     }
 
@@ -123,7 +187,7 @@ function movePaddle(key, paddle) {
     paddle.forEach((element) => {
       a.push(element);
     });
-    a[a.length] = document.getElementById(String(x) + "," + String(y + 1));
+    a[a.length] = document.getElementById(String(x) + "," + String(lastY + 1));
     a[a.length - 1].className = "pongPixel pongPaddle";
     paddle = a;
     return paddle;
@@ -131,6 +195,9 @@ function movePaddle(key, paddle) {
 }
 
 function moveLeftPaddle(event) {
+  if (gameOver) {
+    return;
+  }
   let key = event.key;
   let newPaddle = movePaddle(key, userPaddle);
   if (newPaddle != null) {
@@ -164,14 +231,18 @@ function start() {
   spawnPuck();
   puckVector = generateVector();
   puckCounter = 0;
+  gameStarted = true;
   update();
 }
 
 async function update() {
+  if (gameOver) {
+    return;
+  }
   await sleep(200);
   movePuck();
   moveRightPaddle();
-  //update();
+  update();
 }
 
 async function sleep(msec) {
