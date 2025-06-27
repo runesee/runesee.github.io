@@ -232,7 +232,7 @@ function start() {
   puckVector = generateVector();
   puckCounter = 0;
   gameStarted = true;
-  update();
+  setInterval(update, 400);
 }
 
 async function update() {
@@ -242,7 +242,6 @@ async function update() {
   await sleep(400);
   movePuck();
   moveRightPaddle();
-  update();
 }
 
 async function sleep(msec) {
