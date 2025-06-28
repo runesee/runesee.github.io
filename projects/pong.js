@@ -1,12 +1,19 @@
 var gameOver = false;
 var gameStarted = false;
+var tickspeed = 400;
 var board = document.getElementById("pongBoard");
 var puckVector;
 var puckCounter;
 var userPaddle = [];
 var computerPaddle = [];
+var intervalId;
 let bttn = document.getElementsByClassName("portfolioButton")[0];
 bttn.addEventListener("click", navigate);
+let startButton = document.getElementById("startButton");
+startButton.addEventListener("click", start);
+document
+  .getElementsByTagName("body")[0]
+  .addEventListener("keydown", moveLeftPaddle);
 
 function navigate() {
   let currHref = window.location.href;
@@ -19,8 +26,6 @@ class Vector extends Array {
     return this.map((e, i) => e + other[i]);
   }
 }
-
-start();
 
 function populateBoard() {
   for (let i = 0; i < 21; i++) {
@@ -73,7 +78,6 @@ function movePuck() {
   let x = puck.id.split(",");
   let y = Number(x[1]);
   x = Number(x[0]);
-  puckCounter++;
   newX = x + puckVector[0];
   newY = y + puckVector[1];
   let newPuck = puck;
@@ -105,13 +109,19 @@ function movePuck() {
 
     if (newX === 1) {
       if (newY >= firstUserpaddleY && newY <= lastUserpaddleY) {
-        puckVector = new Vector(puckVector[0] * -1, puckVector[1]);
+        puckCounter++;
+        let diff = newY - firstUserpaddleY;
+        let angleMod = diff - 2;
+        puckVector = new Vector(puckVector[0] * -1, angleMod);
         movePuck();
         return;
       }
     } else if (newX === 29) {
       if (newY >= firstComputerpaddleY && newY <= lastComputerpaddleY) {
-        puckVector = new Vector(puckVector[0] * -1, puckVector[1]);
+        puckCounter++;
+        let diff = newY - firstUserpaddleY;
+        let angleMod = diff - 2;
+        puckVector = new Vector(puckVector[0] * -1, angleMod);
         movePuck();
         return;
       }
@@ -126,19 +136,19 @@ function movePaddle(key, paddle) {
   if (key == "w") {
     let firstElement = paddle[0];
     let firstY = Number(firstElement.id.split(",")[1]);
+    let firstX = Number(firstElement.id.split(",")[0]);
 
     // Prevent moving up if roof reached
     if (firstY === 0) {
       return null;
     }
 
-    let pongY = Number(
-      document.getElementsByClassName("pongPuck")[0].id.split(",")[1]
-    );
-    console.log("pongY: " + pongY);
-    console.log("paddleY: " + firstY);
+    let puck = document.getElementsByClassName("pongPuck")[0].id.split(",");
 
-    if (pongY + 1 === firstY) {
+    let puckY = Number(puck[1]);
+    let puckX = Number(puck[0]);
+
+    if (puckY + 1 === firstY && puckX === firstX) {
       // If puck is already occupying the space, disallow moving into the square
       return null;
     }
@@ -161,17 +171,18 @@ function movePaddle(key, paddle) {
   } else if (key == "s") {
     let lastElement = paddle[paddle.length - 1];
     let lastY = Number(lastElement.id.split(",")[1]);
+    let lastX = Number(lastElement.id.split(",")[0]);
 
     // Prevent moving down if floor reached
     if (lastY == 20) {
       return null;
     }
 
-    let pongY = Number(
-      document.getElementsByClassName("pongPuck")[0].id.split(",")[1]
-    );
+    let puck = document.getElementsByClassName("pongPuck")[0].id.split(",");
+    let puckY = Number(puck[1]);
+    let puckX = Number(puck[0]);
 
-    if (pongY - 1 === lastY) {
+    if (puckY - 1 === lastY && puckX === lastX) {
       // If puck is already occupying the space, disallow moving into the square
       return null;
     }
@@ -223,27 +234,32 @@ function moveRightPaddle() {
 }
 
 function start() {
-  document
-    .getElementsByTagName("body")[0]
-    .addEventListener("keydown", moveLeftPaddle);
+  startButton.style.visibility = "hidden";
+  gameOver = false;
+  resetBoard();
   populateBoard();
   spawnPaddles();
   spawnPuck();
   puckVector = generateVector();
   puckCounter = 0;
   gameStarted = true;
-  setInterval(update, 400);
+  intervalId = setInterval(update, tickspeed);
 }
 
 async function update() {
   if (gameOver) {
+    startButton.style.visibility = "visible";
+    tickspeed = 400;
+    puckCounter = 0;
+    clearInterval(intervalId);
     return;
   }
-  await sleep(400);
-  movePuck();
   moveRightPaddle();
-}
-
-async function sleep(msec) {
-  return new Promise((resolve) => setTimeout(resolve, msec));
+  movePuck();
+  if (puckCounter === 3) {
+    puckCounter = 0;
+    clearInterval(intervalId);
+    tickspeed > 100 ? (tickspeed -= 100) : tickspeed;
+    intervalId = setInterval(update, tickspeed);
+  }
 }
