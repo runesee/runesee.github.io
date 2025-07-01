@@ -270,6 +270,10 @@ html {
   padding-left: 5%;
 }
 
+#ghostnetWrapper {
+  background-color: #c3daab;
+}
+
 #npcaiWrapper {
   background-color: #92b8c9;
 }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <title>ROWR: GN - runesee</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="navbar" class="themeGreen">
+        <button class="portfolioButton">Portfolio</button>
+        <button disabled="true" class="portfolioButton">/</button>
+        <button disabled="true" class="portfolioButton">ROWR: GN</button>
+      </div>
+      <div class="projectWrapper">
+        <div id="projectDescription">
+          <h1>Robotic Ocean Waste Removal: Ghost Nets</h1>
+          <p>
+            Robotic Ocean Waste Removal: Ghost Nets was an Experts in Teamwork
+            project tackling the problem of locating, removing and modelling
+            lost fish nets. My team's approach to this problem was an
+            interactive web service that leverages data on reported lost fishing
+            nets and uses ocean drift modeling (i.e., OpenDrift) to predict
+            their locations. Lost fishnets are a global issue that cause
+            significant harm to marine ecosystems. We tackled the modelling
+            aspect of this problem; The goal of our solution was to "create a
+            cost-effective solution that simplifies reporting and locating ghost
+            nets, thereby incentivising their retrieval”.
+          </p>
+          <h2><b>TL;DR</b></h2>
+          <p class="tldr">
+            <b>
+              An interactive web tool for reporting and tracking drift of lost
+              fishnets.</b
+            >
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="image of the landing page"
+              src="../images/gn/landing.png"
+            />
+          </div>
+          <br />
+          <p>
+            On the landing page, already registered fishnets are fetched from
+            the database and displayed in the frontend. Lost fishnets can be
+            registered by clicking the corresponding button, and filling out the
+            location and time of loss. For this proof-of-concept project, the
+            application is geographically limited to the Norwegian coast.
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="image of the landing page"
+              src="../images/gn/gn.png"
+            />
+          </div>
+          <p>
+            Each net can be clicked, which opens up an information panel with
+            further details about the net. Here, the drift path of the net can
+            be simulated for 24 hours after its time of registration. If a
+            simulation has already been computed, it is fetched from the
+            database instead. Simulated drift paths contain a set of "particles"
+            for each half-hour timestep. Each timestep can be viewed by
+            adjusting the slider.
+          </p>
+          <br />
+
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="Deployment diagram"
+              src="../images/gn/stranding.png"
+            />
+          </div>
+          <p>
+            The heatmaps help visually showcase the uncertainty of the fishnets'
+            drift. In the example simulation above, the net could have beached,
+            or continued to drift north.
+          </p>
+          <div class="videoWrapper">
+            <img
+              class="projectIntroImg"
+              alt="Deployment diagram"
+              src="../images/gn/architecture.png"
+            />
+          </div>
+          <p>
+            Depicted above is an architectural overview of the application. A
+            key focus of this project was scalability. Down the line, we wanted
+            it to be possible to simulate for longer periods, and, ideally, from
+            anywhere around the globe. To achieve this, past simulations are
+            stored, and redundancy is removed by rounding location and temporal
+            data to reduce the number of unique simulations. Additionally,
+            gathering data of lost fishnets from other sources is supported.
+            While this proof-of-concept is duly limited, it demonstrates how
+            modelling and reporting of lost fishnets could be combined through a
+            single, global tool.
+          </p>
+
+          <div id="githubWrapper">
+            <a href="https://github.com/kristianvaula/EiT-ROWR-Team-4"
+              ><img
+                src="../images/common/github.png"
+                alt="GitHub logo"
+                id="github"
+              />
+              <p>Take me to the repository!</p></a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <h3>@runesee</h3>
+      </div>
+    </div>
+    <script>
+      let bttn = document.getElementsByClassName("portfolioButton")[0];
+      bttn.addEventListener("click", navigate);
+
+      /* Possibly the goofiest way to do page navigation. Because why not. */
+      function navigate() {
+        let currHref = window.location.href;
+        currHref = currHref.replace("projects/rowr.html", "index.html");
+        window.location.href = currHref;
+      }
+    </script>
+  </body>
+</html>
