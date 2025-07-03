@@ -33,6 +33,10 @@ export class Battleship {
     return this.positions;
   }
 
+  clearPositions() {
+    this.positions = [];
+  }
+
   getDirection() {
     return this.direction;
   }
