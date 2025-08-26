@@ -1,0 +1,28 @@
+name: Fetch Weather Data
+
+on:
+  schedule:
+    - cron: "0 */8 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-weather:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Fetch Trondheim weather
+        run: |
+          curl -s \
+            -H "User-Agent: runesee-githubpages-weather-widget/1.0" \
+            "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=63.4305&lon=10.3951" \
+            -o data/weather.json
+
+      - name: Commit & push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git add data/weather.json
+          git commit -m "Update weather data [skip ci]" || echo "No changes"
+          git push
