@@ -19,8 +19,20 @@ html {
   background-size: cover;
   padding: 0;
   width: 480px;
-  height: inherit;
-  padding-top: 30vh;
+  height: 100vh;
+}
+
+#topbar {
+  height: 15vh;
+  padding: 0;
+}
+
+#topbar-time {
+  position: absolute;
+  padding: 0;
+  margin: 0 0 0 0;
+  right: 2vw;
+  top: 1vh;
 }
 
 #weather-widget {

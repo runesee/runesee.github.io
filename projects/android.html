@@ -7,6 +7,9 @@
   </head>
   <body>
     <div id="screen">
+      <div id="topbar">
+        <h2 id="topbar-time"></h2>
+      </div>
       <div id="weather-widget">
         <div id="weather-content">
           <img id="weather-icon" />
@@ -17,10 +20,30 @@
     </div>
 
     <script>
+      function updateClock() {
+        let date = new Date();
+        let clock = document.getElementById("topbar-time");
+        let hours = String(date.getHours()).padStart(2, "0");
+        let minutes = String(date.getMinutes()).padStart(2, "0");
+        clock.innerText = `${hours}:${minutes}`;
+      }
+
+      function startClock() {
+        updateClock();
+        let date = new Date();
+        let delay =
+          60_000 - (date.getSeconds() * 1000 + date.getMilliseconds());
+
+        setTimeout(() => {
+          updateClock();
+          setInterval(updateClock, 60_000);
+        }, delay);
+      }
+
       async function fetchWeather() {
         try {
           const response = await fetch("../data/weather.json");
-          if (!response.ok) throw new Error("Could not load cached weather");
+          if (!response.ok) throw new Error("Could not load weather data");
 
           const data = await response.json();
           const now = new Date();
@@ -42,18 +65,16 @@
           const symbol =
             closest.data.next_1_hours?.summary?.symbol_code || "unknown";
 
-          document.getElementById(
-            "weather-temperature"
-          ).innerHTML = `<h1 id="weather-temperature">${temp} °C</h1>`;
+          document.getElementById("weather-temperature").innerText =
+            String(temp) + " °C";
           document.getElementById("weather-icon").src =
             "../images/an/" + String(symbol) + ".png";
         } catch (err) {
           console.error(err);
-          document.getElementById(
-            "weather-temperature"
-          ).innerHTML = `<h1 id="weather-temperature">? °C</h1>`;
+          document.getElementById("weather-temperature").innerText = "? °C";
         }
       }
+      startClock();
       fetchWeather();
     </script>
   </body>
