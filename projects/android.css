@@ -25,6 +25,7 @@ html {
 
 #weather-widget {
   display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
@@ -35,8 +36,19 @@ html {
 }
 
 #weather-content {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
   margin-top: auto;
   margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#weather-icon {
+  width: 200px;
+  height: 200px;
   margin-left: auto;
   margin-right: auto;
 }

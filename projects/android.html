@@ -10,13 +10,11 @@
       <div id="weather-widget">
         <div id="weather-content">
           <img id="weather-icon" />
-          <h1 id="weather-temperature">Fetching temperature...</h1>
-          <h3>Trondheim</h3>
+          <h1 id="weather-temperature">? °C</h1>
+          <h2>Trondheim</h2>
         </div>
       </div>
     </div>
-
-    <div id="weather">Loading weather...</div>
 
     <script>
       async function fetchWeather() {
@@ -46,14 +44,14 @@
 
           document.getElementById(
             "weather-temperature"
-          ).innerHTML = `<h1 id="weather-temperature">${temp}</h1>`;
+          ).innerHTML = `<h1 id="weather-temperature">${temp} °C</h1>`;
           document.getElementById("weather-icon").src =
-            "../images/an/" + "${symbol}" + ".png";
+            "../images/an/" + String(symbol) + ".png";
         } catch (err) {
           console.error(err);
           document.getElementById(
             "weather-temperature"
-          ).innerHTML = `<h1 id="weather-temperature">Temperature unavailable</h1>`;
+          ).innerHTML = `<h1 id="weather-temperature">? °C</h1>`;
         }
       }
       fetchWeather();
