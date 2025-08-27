@@ -9,7 +9,7 @@
     <div id="screen">
       <div id="weather-widget">
         <div id="weather-content">
-          <img />
+          <img id="weather-icon" />
           <h1 id="weather-temperature">Fetching temperature...</h1>
           <h3>Trondheim</h3>
         </div>
@@ -44,17 +44,18 @@
           const symbol =
             closest.data.next_1_hours?.summary?.symbol_code || "unknown";
 
-          document.getElementById("weather").innerHTML = `
-      <h2>Trondheim</h2>
-      <p><strong>${temp} °C</strong></p>
-    `;
+          document.getElementById(
+            "weather-temperature"
+          ).innerHTML = `<h1 id="weather-temperature">${temp}</h1>`;
+          document.getElementById("weather-icon").src =
+            "../images/an/" + "${symbol}" + ".png";
         } catch (err) {
           console.error(err);
-          document.getElementById("weather").textContent =
-            "Weather unavailable.";
+          document.getElementById(
+            "weather-temperature"
+          ).innerHTML = `<h1 id="weather-temperature">Temperature unavailable</h1>`;
         }
       }
-
       fetchWeather();
     </script>
   </body>
