@@ -15,8 +15,47 @@
         </div>
       </div>
     </div>
+
+    <div id="weather">Loading weather...</div>
+
     <script>
-      let temp = document.getElementById("weather-temperature");
+      async function fetchWeather() {
+        try {
+          const response = await fetch("./data/weather.json");
+          if (!response.ok) throw new Error("Could not load cached weather");
+
+          const data = await response.json();
+          const now = new Date();
+          const timeseries = data.properties.timeseries;
+
+          let closest = timeseries[0];
+          let minDiff = Infinity;
+
+          for (const entry of timeseries) {
+            const entryTime = new Date(entry.time);
+            const diff = Math.abs(entryTime - now);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closest = entry;
+            }
+          }
+
+          const temp = closest.data.instant.details.air_temperature;
+          const symbol =
+            closest.data.next_1_hours?.summary?.symbol_code || "unknown";
+
+          document.getElementById("weather").innerHTML = `
+      <h2>Trondheim</h2>
+      <p><strong>${temp} °C</strong></p>
+    `;
+        } catch (err) {
+          console.error(err);
+          document.getElementById("weather").textContent =
+            "Weather unavailable.";
+        }
+      }
+
+      fetchWeather();
     </script>
   </body>
 </html>
