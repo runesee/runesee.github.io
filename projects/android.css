@@ -4,8 +4,7 @@ body {
   margin: 0 0 0 0;
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
-  width: 100vw;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 html {
@@ -20,7 +19,7 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   padding: 0;
-  width: 480px;
+  width: 100%;
   height: 100vh;
 }
 
@@ -67,8 +66,21 @@ html {
   margin-right: auto;
 }
 
-@media screen and (min-width: 480px) {
-  #screen {
-    width: 100vw;
+@media screen and (max-width: 500px) {
+  #weather-icon {
+    width: 125px;
+    height: 125px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #weather-icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  h1,
+  h2 {
+    font-size: medium;
   }
 }
