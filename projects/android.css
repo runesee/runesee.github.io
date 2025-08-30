@@ -10,6 +10,7 @@ html {
   padding: 0;
   background-color: #f7fff7;
   transition: 0.5s;
+  overflow: hidden;
 }
 
 * {
@@ -43,6 +44,8 @@ h2 {
   margin: 0 0 0 0;
   right: 2%;
   top: 1%;
+  max-width: 96%;
+  overflow: hidden;
 }
 
 #weather-widget {
@@ -79,6 +82,14 @@ h2 {
   #weather-icon {
     width: 125px;
     height: 125px;
+  }
+
+  #screen {
+    outline: 2px solid red;
+  }
+
+  body {
+    outline: 2px solid blue;
   }
 }
 
